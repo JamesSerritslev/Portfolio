@@ -2,11 +2,15 @@
   "name": "portfolio",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "clean": "node scripts/clean.mjs",
     "dev": "npm run clean && next dev",
     "dev:fast": "next dev",
-    "build": "npm run clean && next build",
+    "build": "next build",
+    "build:local": "npm run clean && next build",
     "start": "next start",
     "lint": "next lint"
   },
