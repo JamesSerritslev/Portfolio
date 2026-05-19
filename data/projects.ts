@@ -27,7 +27,7 @@ export const projects: Project[] = [
     shortDescription:
       "Full-stack music networking app for musicians, bands, and venues — 110 users in month one, zero paid ads.",
     fullDescription:
-      "BandScope is a full-stack music networking platform that connects musicians, bands, and venues — part professional network, part local gig board. Users create role-specific profiles, discover and follow each other, post and browse events, and message directly. I designed and built the entire product: auth and onboarding, three user role types, event discovery and creation, follows, in-app messaging, notifications, content moderation, and custom transactional email flows. Ships as a responsive web app and native iOS/Android apps via Capacitor, all backed by Supabase. In its first month after launch, BandScope grew to 110 users entirely through organic Facebook community posts — zero paid advertising.",
+      "BandScope is a personal project I'm passionate about. It's a full-stack music networking platform that connects musicians, bands, and venues — part professional network, part local gig board. Users create role-specific profiles, discover and follow each other, post and browse events, and message directly. I designed and built the entire product: auth and onboarding, three user role types, event discovery and creation, follows, in-app messaging, notifications, content moderation, and custom transactional email flows. Ships as a responsive web app and native iOS/Android apps via Capacitor, all backed by Supabase. In its first month after launch, BandScope grew to 110 users entirely through organic Facebook community posts — zero paid advertising.",
     stack: [
       {
         category: "Frontend",

@@ -29,11 +29,11 @@ export default function ResumePage() {
         <h1 className="font-serif text-3xl text-white sm:text-4xl md:text-5xl">
           {resumeContact.name}
         </h1>
-        <ul className="mt-4 flex flex-col gap-2 font-sans text-sm text-[#9F956C] sm:flex-row sm:flex-wrap sm:gap-x-4 sm:gap-y-2">
+        <ul className="mt-4 flex flex-col gap-2 font-sans text-sm text-[#9F956C] sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-4 sm:gap-y-2">
           <li>
             <a
               href={`tel:${resumeContact.phone}`}
-              className="inline-block min-h-[44px] py-2 hover:text-white active:text-white"
+              className="inline-flex min-h-[44px] items-center py-2 hover:text-white active:text-white sm:min-h-0 sm:py-0"
             >
               {resumeContact.phone}
             </a>
@@ -42,22 +42,24 @@ export default function ResumePage() {
           <li>
             <a
               href={`mailto:${resumeContact.email}`}
-              className="inline-block min-h-[44px] break-all py-2 hover:text-white active:text-white"
+              className="inline-flex min-h-[44px] items-center break-all py-2 hover:text-white active:text-white sm:min-h-0 sm:py-0"
             >
               {resumeContact.email}
             </a>
           </li>
           <li className="hidden text-[#888888] sm:list-item">|</li>
-          <li className="py-2 text-[#888888] sm:py-0">{resumeContact.location}</li>
+          <li className="inline-flex min-h-[44px] items-center py-2 text-[#888888] sm:min-h-0 sm:py-0">
+            {resumeContact.location}
+          </li>
           <li className="hidden text-[#888888] sm:list-item">|</li>
           <li>
             <a
               href={resumeContact.linkedIn}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block min-h-[44px] py-2 hover:text-white active:text-white"
+              className="inline-flex min-h-[44px] items-center py-2 hover:text-white active:text-white sm:min-h-0 sm:py-0"
             >
-              LinkedIn ↗
+              LinkedIn
             </a>
           </li>
           <li className="hidden text-[#888888] sm:list-item">|</li>
@@ -66,9 +68,9 @@ export default function ResumePage() {
               href={resumeContact.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block min-h-[44px] py-2 hover:text-white active:text-white"
+              className="inline-flex min-h-[44px] items-center py-2 hover:text-white active:text-white sm:min-h-0 sm:py-0"
             >
-              GitHub ↗
+              GitHub
             </a>
           </li>
         </ul>
