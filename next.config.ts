@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Avoid stale dev overlay issues when the .next cache gets out of sync
+  devIndicators: false,
 };
 
 export default nextConfig;

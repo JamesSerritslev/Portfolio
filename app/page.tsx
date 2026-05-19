@@ -1,65 +1,36 @@
-import Image from "next/image";
+import Link from "next/link";
+import { ProjectCardsGallery } from "@/components/ProjectCardsGallery";
+import { projects } from "@/data/projects";
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="mx-auto min-h-dvh max-w-5xl overflow-x-hidden px-4 pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-[max(1.5rem,env(safe-area-inset-top))] sm:px-6 md:flex md:h-dvh md:max-h-dvh md:flex-col md:overflow-hidden md:py-8 md:pb-8 md:pt-8">
+      <section className="mb-6 shrink-0 text-center sm:mb-8 md:mb-5 md:text-left">
+        <h1 className="animate-fade-in font-serif text-4xl leading-[1.05] text-white sm:text-5xl md:text-6xl lg:text-7xl">
+          James
+          <br />
+          Serritslev
+        </h1>
+        <p className="animate-fade-in mx-auto mt-3 max-w-xl font-sans text-sm leading-relaxed text-[#888888] [animation-delay:150ms] sm:mt-4 sm:text-base md:mx-0 md:mt-5">
+          I build fast, content-managed websites for clients who care about
+          design. Based in South Jordan, UT.
+        </p>
+        <Link
+          href="/resume"
+          className="animate-fade-in mt-4 inline-block rounded-lg border-2 border-[#9F956C]/25 px-5 py-2.5 font-sans text-sm text-[#9F956C] transition-all [animation-delay:200ms] hover:border-[#9F956C] hover:text-white active:scale-[0.98] sm:mt-5 md:py-2"
+        >
+          Resume
+        </Link>
+      </section>
+
+      <section className="text-center md:flex md:min-h-0 md:flex-1 md:flex-col md:overflow-visible md:text-left">
+        <p className="mb-4 shrink-0 font-sans text-xs font-medium uppercase tracking-[0.2em] text-[#9F956C] md:mb-4">
+          Projects
+        </p>
+        <div className="md:min-h-0 md:flex-1">
+          <ProjectCardsGallery projects={projects} />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </section>
+    </main>
   );
 }
