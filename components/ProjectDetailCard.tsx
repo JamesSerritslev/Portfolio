@@ -51,7 +51,7 @@ export function ProjectDetailCard({
       </div>
       {!compact && (
         <p className="px-6 py-4 font-sans text-sm text-[#9F956C] transition-colors group-hover:text-white">
-          View Live Site ↗
+          View Live Site
         </p>
       )}
     </a>

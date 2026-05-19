@@ -54,6 +54,16 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             <time dateTime={project.date} className="leading-none">
               {project.date}
             </time>
+            {project.inProgress && (
+              <>
+                <span className="hidden text-[#888888] md:inline" aria-hidden>
+                  ·
+                </span>
+                <span className="rounded-full border border-[#9F956C]/40 px-3 py-1 font-sans text-xs uppercase tracking-wider text-white">
+                  In progress
+                </span>
+              </>
+            )}
             <span className="hidden text-[#888888] md:inline" aria-hidden>
               ·
             </span>
@@ -63,7 +73,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               rel="noopener noreferrer"
               className="inline-flex min-h-[44px] items-center py-2 leading-none transition-colors hover:text-white active:text-white md:min-h-0 md:py-0"
             >
-              Live Site ↗
+              Live Site
             </a>
           </div>
         </div>

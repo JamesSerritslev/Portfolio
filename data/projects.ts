@@ -14,6 +14,8 @@ export interface Project {
   imageUrl: string;
   liveUrl: string;
   accentColor?: string;
+  /** Shown on the project detail page while the site is still being built. */
+  inProgress?: boolean;
 }
 
 export const projects: Project[] = [
@@ -51,6 +53,7 @@ export const projects: Project[] = [
     slug: "analogue-room",
     title: "The Analogue Room",
     date: "May 2026",
+    inProgress: true,
     liveUrl: "https://theanalogueroom.com",
     shortDescription:
       "Content-managed venue website for a vinyl lounge and wine bar in Solvang, California.",
@@ -77,6 +80,7 @@ export const projects: Project[] = [
     slug: "standing-sun-wines",
     title: "Standing Sun Wines",
     date: "May 2026",
+    inProgress: true,
     liveUrl: "https://standingsunwines.com",
     shortDescription:
       "Next.js + Sanity rebuild for a Santa Ynez Valley winery — content-managed marketing pages, events, and lead capture.",
