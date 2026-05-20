@@ -1,7 +1,16 @@
 import type { Metadata } from "next";
 import { DM_Sans, DM_Serif_Display } from "next/font/google";
 import "./globals.css";
+import { getMetadataBase } from "@/lib/site";
 import { cn } from "@/lib/utils";
+
+const ogImage = {
+  url: "/opengraph.png",
+  width: 1200,
+  height: 630,
+  alt: "James's Portfolio",
+  type: "image/png",
+} as const;
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -16,12 +25,8 @@ const dmSerif = DM_Serif_Display({
   display: "swap",
 });
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ??
-  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
-
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: getMetadataBase(),
   title: {
     default: "James's Portfolio",
     template: "%s | James's Portfolio",
@@ -32,10 +37,12 @@ export const metadata: Metadata = {
     title: "James's Portfolio",
     siteName: "James's Portfolio",
     type: "website",
+    images: [ogImage],
   },
   twitter: {
     card: "summary_large_image",
     title: "James's Portfolio",
+    images: [ogImage],
   },
 };
 
