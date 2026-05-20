@@ -23,19 +23,19 @@ const siteUrl =
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "James Serritslev",
-    template: "%s | James Serritslev",
+    default: "James's Portfolio",
+    template: "%s | James's Portfolio",
   },
   description:
     "I build fast, content-managed websites for clients who care about design.",
   openGraph: {
-    title: "James Serritslev",
-    siteName: "James Serritslev",
+    title: "James's Portfolio",
+    siteName: "James's Portfolio",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "James Serritslev",
+    title: "James's Portfolio",
   },
 };
 

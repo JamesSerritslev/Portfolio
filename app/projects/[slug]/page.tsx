@@ -60,7 +60,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   ·
                 </span>
                 <span className="rounded-full border border-[#9F956C]/40 px-3 py-1 font-sans text-xs uppercase tracking-wider text-white">
-                  In progress
+                  In Progress
                 </span>
               </>
             )}
