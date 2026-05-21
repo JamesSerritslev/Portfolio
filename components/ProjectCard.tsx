@@ -10,6 +10,9 @@ interface ProjectCardProps {
   project: Project;
   variant?: "list" | "gallery";
   layoutClassName?: string;
+  isElevated?: boolean;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
 }
 
 const { width: imgW, height: imgH } = PROJECT_IMAGE;
@@ -57,15 +60,21 @@ export function ProjectCard({
   project,
   variant = "list",
   layoutClassName,
+  isElevated = false,
+  onMouseEnter,
+  onMouseLeave,
 }: ProjectCardProps) {
   if (variant === "gallery") {
     return (
       <Link
         href={`/projects/${project.slug}`}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
         className={cn(
-          "group mx-auto block w-full max-w-[22rem] overflow-hidden rounded-2xl bg-black p-1 md:mx-0 md:w-[17rem] md:max-w-none lg:w-[19rem] xl:w-[21rem]",
+          "group pointer-events-auto mx-auto block w-full max-w-[22rem] overflow-hidden rounded-2xl bg-black p-1 md:mx-0 md:w-[17rem] md:max-w-none lg:w-[19rem] xl:w-[21rem]",
           cardHoverStyles,
-          "hover:z-40 hover:scale-[1.02] active:scale-[0.99] md:active:scale-100",
+          "hover:scale-[1.02] active:scale-[0.99] md:active:scale-100",
+          isElevated && "!z-50",
           layoutClassName
         )}
       >

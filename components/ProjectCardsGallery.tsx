@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { ProjectCard } from "@/components/ProjectCard";
 import type { Project } from "@/data/projects";
 
@@ -15,6 +16,8 @@ interface ProjectCardsGalleryProps {
 }
 
 export function ProjectCardsGallery({ projects }: ProjectCardsGalleryProps) {
+  const [hoveredSlug, setHoveredSlug] = useState<string | null>(null);
+
   return (
     <>
       {/* Mobile & tablet portrait: scrollable stack */}
@@ -24,14 +27,17 @@ export function ProjectCardsGallery({ projects }: ProjectCardsGalleryProps) {
         ))}
       </div>
 
-      {/* Desktop (md+): staggered overlap — unchanged */}
-      <div className="relative mx-auto hidden h-full w-full max-w-6xl origin-top scale-[0.88] md:block lg:scale-[0.94] xl:scale-100">
+      {/* Desktop (md+): staggered overlap */}
+      <div className="pointer-events-none relative mx-auto hidden h-full w-full max-w-6xl origin-top scale-[0.88] md:block lg:scale-[0.94] xl:scale-100">
         {projects.map((project, index) => (
           <ProjectCard
             key={project.slug}
             project={project}
             variant="gallery"
             layoutClassName={GALLERY_LAYOUTS[index]}
+            isElevated={hoveredSlug === project.slug}
+            onMouseEnter={() => setHoveredSlug(project.slug)}
+            onMouseLeave={() => setHoveredSlug(null)}
           />
         ))}
       </div>

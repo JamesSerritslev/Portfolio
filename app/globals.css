@@ -2,6 +2,9 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+/* Restore pointer hover on hybrid/touch laptops (Tailwind v4 defaults to hover: hover only). */
+@variant hover (&:hover);
+
 @custom-variant dark (&:is(.dark *));
 
 @theme {

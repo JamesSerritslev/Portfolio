@@ -46,6 +46,7 @@ export const PixelImage = ({
 }: PixelImageProps) => {
   const [isVisible, setIsVisible] = useState(false)
   const [showColor, setShowColor] = useState(false)
+  const [delays, setDelays] = useState<number[]>([])
 
   const MIN_GRID = 1
   const MAX_GRID = 16
@@ -68,12 +69,15 @@ export const PixelImage = ({
   }, [customGrid, grid])
 
   useEffect(() => {
+    setDelays(
+      Array.from({ length: rows * cols }, () => Math.random() * maxAnimationDelay)
+    )
     setIsVisible(true)
     const colorTimeout = setTimeout(() => {
       setShowColor(true)
     }, colorRevealDelay)
     return () => clearTimeout(colorTimeout)
-  }, [colorRevealDelay])
+  }, [rows, cols, maxAnimationDelay, colorRevealDelay])
 
   const pieces = useMemo(() => {
     const total = rows * cols
@@ -88,13 +92,9 @@ export const PixelImage = ({
         ${col * (100 / cols)}% ${(row + 1) * (100 / rows)}%
       )`
 
-      const delay = Math.random() * maxAnimationDelay
-      return {
-        clipPath,
-        delay,
-      }
+      return { clipPath }
     })
-  }, [rows, cols, maxAnimationDelay])
+  }, [rows, cols])
 
   return (
     <div className={cn("relative size-full min-h-48 select-none", className)}>
@@ -107,7 +107,7 @@ export const PixelImage = ({
           )}
           style={{
             clipPath: piece.clipPath,
-            transitionDelay: `${piece.delay}ms`,
+            transitionDelay: `${delays[index] ?? 0}ms`,
             transitionDuration: `${pixelFadeInDuration}ms`,
           }}
         >
