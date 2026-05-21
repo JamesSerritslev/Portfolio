@@ -14,6 +14,9 @@
   --color-text-primary: #ffffff;
   --color-text-muted: #888888;
   --color-border-gold: rgb(159 149 108 / 0.2);
+  --color-gold: #9f956c;
+  --color-teal: #153243;
+  --color-gold-border: rgb(159 149 108 / 0.2);
   --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-dm-serif), ui-serif, Georgia, serif;
 }
@@ -40,6 +43,64 @@
 .animate-fade-in {
   opacity: 0;
   animation: fade-in 0.8s ease-out forwards;
+}
+
+@keyframes reveal-after {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(101%);
+  }
+}
+
+@keyframes reveal-before {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+.reveal-line {
+  position: relative;
+  display: block;
+  line-height: 1.3;
+}
+
+.reveal-line::after,
+.reveal-line::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: var(--reveal-left, 0);
+  z-index: 1;
+  width: 100vw;
+  height: 100%;
+}
+
+.reveal-line::after {
+  background: #9f956c;
+  transform: translateX(-101%);
+}
+
+.reveal-line::before {
+  background: #000000;
+  transform: translateX(0);
+}
+
+.reveal-line-active::after {
+  animation: reveal-after .7s cubic-bezier(0.77, 0, 0.18, 1) forwards;
+}
+
+.reveal-line-active::before {
+  animation: reveal-before .7s cubic-bezier(0.77, 0, 0.18, 1) forwards;
+}
+
+.reveal-line-active::before,
+.reveal-line-active::after {
+  animation-delay: var(--delay, 0s);
 }
 
 @theme inline {

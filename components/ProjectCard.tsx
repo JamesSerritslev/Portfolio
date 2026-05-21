@@ -1,7 +1,7 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
-import { PixelImage } from "@/components/ui/pixel-image";
 import { PROJECT_IMAGE } from "@/data/projects";
 import type { Project } from "@/data/projects";
 import { cn } from "@/lib/utils";
@@ -40,13 +40,16 @@ function ProjectCardImage({
         className="relative w-full overflow-hidden"
         style={{ paddingBottom: IMAGE_ASPECT_PADDING }}
       >
-        <PixelImage
+        <Image
           src={src}
           alt={alt}
-          customGrid={{ rows: 4, cols: 6 }}
-          grayscaleAnimation
-          objectFit={showFullImage ? "contain" : "cover"}
-          className="absolute inset-0 min-h-0"
+          width={imgW}
+          height={imgH}
+          sizes="(max-width: 768px) 100vw, 320px"
+          className={cn(
+            "absolute inset-0 h-full w-full",
+            showFullImage ? "object-contain" : "object-cover"
+          )}
         />
       </div>
     </div>
@@ -111,14 +114,14 @@ export function ProjectCard({
         "hover:scale-[1.01]"
       )}
     >
-      <div className="relative aspect-[2476/1864] w-full shrink-0 overflow-hidden rounded-t-2xl bg-black sm:rounded-l-2xl sm:rounded-tr-none sm:w-1/2">
-        <PixelImage
+      <div className="relative aspect-[2476/1864] w-full shrink-0 overflow-hidden rounded-t-2xl bg-black sm:w-1/2 sm:rounded-l-2xl sm:rounded-tr-none">
+        <Image
           src={project.imageUrl}
           alt={project.title}
-          customGrid={{ rows: 4, cols: 6 }}
-          grayscaleAnimation
-          objectFit="contain"
-          className="size-full"
+          width={imgW}
+          height={imgH}
+          sizes="(max-width: 640px) 100vw, 384px"
+          className="h-full w-full object-contain"
         />
       </div>
       <div className="flex flex-col justify-center gap-3 p-6 sm:w-1/2 sm:p-8">
