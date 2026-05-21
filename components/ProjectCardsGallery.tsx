@@ -1,8 +1,16 @@
 "use client";
 
-import { useState } from "react";
 import { ProjectCard } from "@/components/ProjectCard";
 import type { Project } from "@/data/projects";
+import {
+  ensureHomeScrollLock,
+  releaseHomeScrollLock,
+} from "@/lib/home-scroll-lock";
+import { runArcEntrance } from "@/lib/arc-entrance";
+import { skipHomeEntranceAnimations, wasPageReloaded } from "@/lib/page-reload";
+import { useNavigationStore } from "@/store/navigationStore";
+import { usePathname } from "next/navigation";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 /** Staggered positions: BandScope (left) → Analogue Room (center) → Standing Sun (right). */
 const GALLERY_LAYOUTS = [
@@ -11,12 +19,75 @@ const GALLERY_LAYOUTS = [
   "md:absolute md:left-[56%] md:top-0 md:z-30 md:rotate-[13deg]",
 ] as const;
 
+/** Wait after load before cards arc in (ms). */
+const ARC_ENTRANCE_DELAY_MS = 1600;
+
 interface ProjectCardsGalleryProps {
   projects: Project[];
 }
 
+function shouldPlayArcEntrance(): boolean {
+  if (useNavigationStore.getState().navigatedFromResume) return false;
+  return wasPageReloaded("/");
+}
+
 export function ProjectCardsGallery({ projects }: ProjectCardsGalleryProps) {
   const [hoveredSlug, setHoveredSlug] = useState<string | null>(null);
+  const stageRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    return () => releaseHomeScrollLock();
+  }, []);
+
+  useLayoutEffect(() => {
+    const stage = stageRef.current;
+    if (!stage) return;
+
+    const markStageReady = () => stage.setAttribute("data-arc-ready", "");
+
+    const skipEntrance = () => {
+      skipHomeEntranceAnimations();
+      useNavigationStore.getState().setNavigatedFromResume(false);
+      markStageReady();
+      releaseHomeScrollLock();
+    };
+
+    if (!window.matchMedia("(min-width: 768px)").matches) {
+      skipEntrance();
+      return;
+    }
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      skipEntrance();
+      return;
+    }
+
+    if (!shouldPlayArcEntrance()) {
+      skipEntrance();
+      return;
+    }
+
+    ensureHomeScrollLock();
+
+    const cards = Array.from(stage.querySelectorAll<HTMLElement>(":scope > a"));
+    if (cards.length === 0) {
+      markStageReady();
+      return;
+    }
+
+    const cancelArc = runArcEntrance(cards, stage, {
+      delay: ARC_ENTRANCE_DELAY_MS,
+      onComplete: releaseHomeScrollLock,
+    });
+
+    markStageReady();
+
+    return () => {
+      stage.removeAttribute("data-arc-ready");
+      cancelArc();
+    };
+  }, [pathname, projects]);
 
   return (
     <>
@@ -28,7 +99,11 @@ export function ProjectCardsGallery({ projects }: ProjectCardsGalleryProps) {
       </div>
 
       {/* Desktop (md+): staggered overlap */}
-      <div className="pointer-events-none relative mx-auto hidden h-full w-full max-w-6xl origin-top scale-[0.88] md:block lg:scale-[0.94] xl:scale-100">
+      <div
+        ref={stageRef}
+        data-arc-stage=""
+        className="pointer-events-none relative z-50 mx-auto hidden h-full w-full max-w-full origin-top scale-[0.88] md:block lg:scale-[0.94] xl:scale-100"
+      >
         {projects.map((project, index) => (
           <ProjectCard
             key={project.slug}

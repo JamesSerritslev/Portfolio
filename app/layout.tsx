@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { DM_Sans, DM_Serif_Display } from "next/font/google";
+import { HomeScrollGuard } from "@/components/HomeScrollGuard";
+import { PageTransition } from "@/components/PageTransition";
 import "./globals.css";
 import { getMetadataBase } from "@/lib/site";
 import { cn } from "@/lib/utils";
@@ -52,9 +54,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn(dmSans.variable, dmSerif.variable)}>
+    <html lang="en" className={cn(dmSans.variable, dmSerif.variable, "overflow-x-hidden")}>
       <body className="min-h-screen overflow-x-hidden bg-black font-sans text-white antialiased">
-        {children}
+        <HomeScrollGuard />
+        <PageTransition>{children}</PageTransition>
       </body>
     </html>
   );

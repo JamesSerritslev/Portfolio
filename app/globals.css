@@ -42,7 +42,159 @@
 
 .animate-fade-in {
   opacity: 0;
-  animation: fade-in 0.8s ease-out forwards;
+  animation-name: fade-in;
+  animation-duration: 0.8s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+  animation-delay: var(--fade-delay, 0s);
+}
+
+.fade-delay-resume {
+  --fade-delay: 1s;
+}
+
+.fade-delay-projects {
+  --fade-delay: 1.56s;
+}
+
+html.skip-home-entrance .animate-fade-in {
+  opacity: 1;
+  animation: none;
+  transform: none;
+}
+
+html.skip-home-entrance [data-arc-stage] > a {
+  opacity: 1;
+  visibility: visible;
+}
+
+html.skip-home-entrance:not(.nav-enter-home) [data-home-page] {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+/* ── Page transitions (home ↔ project, resume → home; not home → resume) ── */
+
+[data-home-page] {
+  opacity: 1;
+}
+
+@keyframes nav-exit-home {
+  to {
+    opacity: 0;
+    transform: scale(0.988) translateY(-8px);
+    filter: blur(3px);
+  }
+}
+
+@keyframes nav-enter-project {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+    filter: blur(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes nav-exit-project {
+  to {
+    opacity: 0;
+    transform: translateY(12px);
+    filter: blur(1px);
+  }
+}
+
+@keyframes nav-exit-resume {
+  to {
+    opacity: 0;
+    transform: translateY(10px);
+    filter: blur(1.5px);
+  }
+}
+
+@keyframes nav-enter-home {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+    filter: blur(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+html.nav-exit-home [data-home-page] {
+  animation: nav-exit-home 0.38s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+html.nav-enter-project [data-project-page] {
+  animation: nav-enter-project 0.58s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+html.nav-exit-project [data-project-page] {
+  animation: nav-exit-project 0.38s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+html.nav-exit-resume [data-resume-page] {
+  animation: nav-exit-resume 0.38s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+html.nav-enter-home [data-home-page] {
+  animation: nav-enter-home 0.58s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+html.nav-enter-home .animate-fade-in {
+  opacity: 1;
+  animation: none;
+  transform: none;
+}
+
+html:is(
+    .nav-exit-home,
+    .nav-exit-project,
+    .nav-exit-resume,
+    .nav-enter-home,
+    .nav-enter-project,
+    .nav-scroll-lock
+  ) {
+  overscroll-behavior: none;
+}
+
+/* Scrollable pages: hide classic body scrollbar during transition (keep Edge overlay) */
+html:is(.nav-exit-project, .nav-exit-resume, .nav-enter-project) {
+  scrollbar-gutter: auto;
+}
+
+html:is(.nav-exit-project, .nav-exit-resume, .nav-enter-project) body {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html:is(.nav-exit-project, .nav-exit-resume, .nav-enter-project)
+  body::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.nav-exit-home [data-home-page],
+  html.nav-enter-project [data-project-page],
+  html.nav-exit-project [data-project-page],
+  html.nav-exit-resume [data-resume-page],
+  html.nav-enter-home [data-home-page] {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
 }
 
 @keyframes reveal-after {
@@ -101,6 +253,39 @@
 .reveal-line-active::before,
 .reveal-line-active::after {
   animation-delay: var(--delay, 0s);
+}
+
+@media (min-width: 768px) {
+  html:has([data-home-page]),
+  html.home-arc-lock,
+  html:has([data-home-page]) body,
+  html.home-arc-lock body {
+    overflow: clip;
+    height: 100dvh;
+    max-height: 100dvh;
+    overscroll-behavior: none;
+    touch-action: none;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  html:has([data-home-page])::-webkit-scrollbar,
+  html.home-arc-lock::-webkit-scrollbar,
+  html:has([data-home-page]) body::-webkit-scrollbar,
+  html.home-arc-lock body::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  html.home-arc-lock body {
+    min-height: 0;
+  }
+
+  [data-arc-stage]:not([data-arc-ready]) > a {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
 
 @theme inline {

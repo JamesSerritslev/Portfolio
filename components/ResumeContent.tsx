@@ -1,10 +1,11 @@
 "use client";
 
-import Link from "next/link";
+import { TransitionLink } from "@/components/TransitionLink";
 import type { ReactNode, RefObject } from "react";
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { ResumeAnimationNote } from "@/components/ResumeAnimationNote";
 import { RevealLine, RevealText } from "@/components/RevealText";
+import { prepareResumeToHomeNavigation } from "@/lib/navigation-transition";
 import {
   resumeContact,
   resumeDownloadPath,
@@ -230,13 +231,17 @@ export function ResumeContent() {
   );
 
   return (
-    <main className="mx-auto max-w-3xl px-4 py-10 pb-[max(2rem,env(safe-area-inset-bottom))] sm:px-6 sm:py-16 md:py-24">
-      <Link
+    <main
+      data-resume-page=""
+      className="mx-auto max-w-3xl px-4 py-10 pb-[max(2rem,env(safe-area-inset-bottom))] sm:px-6 sm:py-16 md:py-24"
+    >
+      <TransitionLink
         href="/"
+        prepare={prepareResumeToHomeNavigation}
         className="inline-block min-h-[44px] py-2 font-sans text-sm text-gold transition-colors hover:text-white active:text-white"
       >
         ← Back
-      </Link>
+      </TransitionLink>
 
       <header className="mt-6 border-b border-gold-border pb-6 sm:mt-8 sm:pb-8">
         {revealText(

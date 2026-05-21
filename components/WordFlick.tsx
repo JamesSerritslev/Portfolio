@@ -19,6 +19,7 @@ const WORDS = [
 ] as const;
 
 const TYPE_SPEED = 30;
+const NAME_TYPE_SPEED = 60;
 const DELETE_SPEED = 20;
 /** Pause ticks before backspace — one entry per phrase in WORDS. */
 const SKIP_DELAYS = [45, 45, 90, 90] as const;
@@ -83,6 +84,7 @@ export function WordFlick() {
       let delay = TYPE_SPEED;
 
       if (state.phase === "name") {
+        delay = NAME_TYPE_SPEED;
         if (state.nameCharIndex < NAME.length) {
           state.nameCharIndex += 1;
           setName(NAME.substring(0, state.nameCharIndex));
@@ -139,7 +141,7 @@ export function WordFlick() {
       timeoutId = setTimeout(tick, delay);
     };
 
-    timeoutId = setTimeout(tick, TYPE_SPEED);
+    timeoutId = setTimeout(tick, NAME_TYPE_SPEED);
 
     return () => {
       clearTimeout(timeoutId);
@@ -149,9 +151,14 @@ export function WordFlick() {
 
   return (
     <div className={cn(!skipEntrance && "animate-fade-in")}>
-      <h1 className="mb-4 font-serif text-4xl leading-[1.05] text-white sm:text-5xl md:text-6xl lg:text-7xl">
-        <span className="whitespace-pre-line">{nameText}</span>
-        {cursorOn === "name" && <span className="animate-pulse">|</span>}
+      <h1 className="relative mb-4 font-serif text-4xl leading-[1.05] text-white sm:text-5xl md:text-6xl lg:text-7xl">
+        <span className="invisible block whitespace-pre-line select-none" aria-hidden="true">
+          {NAME}
+        </span>
+        <span className="absolute inset-0 whitespace-pre-line">
+          {nameText}
+          {cursorOn === "name" && <span className="animate-pulse">|</span>}
+        </span>
       </h1>
       <p
         aria-live="polite"

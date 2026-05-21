@@ -1,7 +1,10 @@
 "use client";
 
+import { prepareHomeToProjectNavigation, scheduleTransitionNavigation } from "@/lib/navigation-transition";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useCallback } from "react";
 import { PROJECT_IMAGE } from "@/data/projects";
 import type { Project } from "@/data/projects";
 import { cn } from "@/lib/utils";
@@ -67,10 +70,26 @@ export function ProjectCard({
   onMouseEnter,
   onMouseLeave,
 }: ProjectCardProps) {
+  const router = useRouter();
+
+  const handleProjectClick = useCallback(
+    (event: React.MouseEvent<HTMLAnchorElement>) => {
+      if (variant !== "gallery") return;
+      event.preventDefault();
+      const href = `/projects/${project.slug}`;
+      scheduleTransitionNavigation(href, prepareHomeToProjectNavigation, (target) => {
+        router.push(target, { scroll: false });
+      });
+    },
+    [project.slug, router, variant],
+  );
+
   if (variant === "gallery") {
     return (
       <Link
         href={`/projects/${project.slug}`}
+        scroll={false}
+        onClick={handleProjectClick}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
         className={cn(

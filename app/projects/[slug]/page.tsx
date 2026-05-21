@@ -1,5 +1,5 @@
+import { ProjectBackLink } from "@/components/ProjectBackLink";
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ProjectDetailCard } from "@/components/ProjectDetailCard";
 import { getProjectBySlug, projects } from "@/data/projects";
@@ -37,13 +37,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   }
 
   return (
-    <main className="mx-auto max-w-4xl overflow-x-hidden px-4 py-10 pb-[max(2rem,env(safe-area-inset-bottom))] sm:px-6 sm:py-16 md:py-24">
-      <Link
-        href="/"
-        className="inline-block min-h-[44px] py-2 font-sans text-sm text-[#9F956C] transition-colors hover:text-white active:text-white"
-      >
-        ← Back
-      </Link>
+    <main
+      data-project-page=""
+      className="mx-auto max-w-4xl overflow-x-hidden px-4 py-10 pb-[max(2rem,env(safe-area-inset-bottom))] sm:px-6 sm:py-16 md:py-24"
+    >
+      <ProjectBackLink />
 
       <div className="mt-6 flex flex-col items-center gap-6 text-center md:mt-8 md:flex-row md:items-start md:justify-between md:gap-10 md:text-left">
         <div className="min-w-0 md:flex-1">
