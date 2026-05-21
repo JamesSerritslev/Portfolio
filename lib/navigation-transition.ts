@@ -122,6 +122,14 @@ export function prepareProjectToHomeNavigation() {
   document.documentElement.classList.add(EXIT_PROJECT);
 }
 
+/** Project detail → next project detail */
+export function prepareProjectToProjectNavigation() {
+  if (prefersReducedMotion()) return;
+  setPendingTransition("project-to-project");
+  lockNavScroll();
+  document.documentElement.classList.add(EXIT_PROJECT);
+}
+
 /** Resume → home (skips card arc, plays page transition) */
 export function prepareResumeToHomeNavigation() {
   useNavigationStore.getState().setNavigatedFromResume(true);
@@ -135,7 +143,7 @@ export function applyEnterTransition(type: PageTransitionType) {
   const html = document.documentElement;
   clearExitTransitionClasses();
 
-  if (type === "home-to-project") {
+  if (type === "home-to-project" || type === "project-to-project") {
     html.classList.add(ENTER_PROJECT);
   } else if (type === "project-to-home" || type === "resume-to-home") {
     html.classList.add(ENTER_HOME);
@@ -152,6 +160,7 @@ export function readPendingTransition(): PageTransitionType {
     if (
       stored === "home-to-project" ||
       stored === "project-to-home" ||
+      stored === "project-to-project" ||
       stored === "resume-to-home"
     ) {
       storageValue = stored;

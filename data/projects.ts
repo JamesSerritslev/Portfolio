@@ -108,3 +108,9 @@ export const projects: Project[] = [
 export function getProjectBySlug(slug: string): Project | undefined {
   return projects.find((p) => p.slug === slug);
 }
+
+export function getNextProject(slug: string): Project | undefined {
+  const index = projects.findIndex((p) => p.slug === slug);
+  if (index === -1 || projects.length < 2) return undefined;
+  return projects[(index + 1) % projects.length];
+}

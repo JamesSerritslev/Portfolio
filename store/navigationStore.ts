@@ -3,6 +3,7 @@ import { create } from "zustand";
 export type PageTransitionType =
   | "home-to-project"
   | "project-to-home"
+  | "project-to-project"
   | "resume-to-home"
   | null;
 

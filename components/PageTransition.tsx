@@ -28,14 +28,18 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
 
     clearExitTransitionClasses();
 
-    if (pathname.startsWith("/projects/")) {
-      resetMobileProjectPageScroll();
-    }
-
     const transition = readPendingTransition();
 
+    if (pathname.startsWith("/projects/")) {
+      resetMobileProjectPageScroll();
+      if (transition === "home-to-project" || transition === "project-to-project") {
+        window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+      }
+    }
+
     const shouldEnterProject =
-      transition === "home-to-project" && pathname.startsWith("/projects/");
+      (transition === "home-to-project" || transition === "project-to-project") &&
+      pathname.startsWith("/projects/");
     const shouldEnterHome =
       (transition === "project-to-home" || transition === "resume-to-home") &&
       pathname === "/";

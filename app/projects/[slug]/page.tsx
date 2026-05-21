@@ -1,8 +1,9 @@
 import { ProjectBackLink } from "@/components/ProjectBackLink";
+import { ProjectScrollNav } from "@/components/ProjectScrollNav";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ProjectDetailCard } from "@/components/ProjectDetailCard";
-import { getProjectBySlug, projects } from "@/data/projects";
+import { getNextProject, getProjectBySlug, projects } from "@/data/projects";
 
 interface ProjectPageProps {
   params: Promise<{ slug: string }>;
@@ -35,6 +36,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   if (!project) {
     notFound();
   }
+
+  const nextProject = getNextProject(slug);
 
   return (
     <main
@@ -108,6 +111,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           ))}
         </div>
       </section>
+
+      {nextProject ? (
+        <ProjectScrollNav currentSlug={slug} nextProject={nextProject} />
+      ) : null}
     </main>
   );
 }

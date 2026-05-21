@@ -76,6 +76,16 @@ html.skip-home-entrance:not(.nav-enter-home) [data-home-page] {
 
 /* ── Page transitions (home ↔ project, resume → home; not home → resume) ── */
 
+html:has([data-project-page]) {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:has([data-project-page]) {
+    scroll-behavior: auto;
+  }
+}
+
 [data-home-page] {
   opacity: 1;
 }
