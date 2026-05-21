@@ -71,6 +71,21 @@ export function wasPageReloaded(path: string): boolean {
   return true;
 }
 
+/**
+ * True on the first paint of a full document load (direct visit or refresh).
+ * Client-side Next.js navigations reuse the same document and keep the original
+ * navigation entry, so this stays false after the first route change.
+ */
+export function isInitialDocumentLoad(): boolean {
+  if (typeof window === "undefined") return false;
+
+  const nav = performance.getEntriesByType(
+    "navigation",
+  )[0] as PerformanceNavigationTiming | undefined;
+
+  return nav?.type === "navigate" || nav?.type === "reload";
+}
+
 export function skipHomeEntranceAnimations() {
   if (typeof document === "undefined") return;
   document.documentElement.classList.add("skip-home-entrance");

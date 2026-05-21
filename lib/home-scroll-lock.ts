@@ -140,3 +140,10 @@ export function releaseHomeScrollLock() {
   homeScrollUnlock?.();
   homeScrollUnlock = null;
 }
+
+/** Mobile home scrolls; project navigations use scroll:false — reset to top on entry. */
+export function resetMobileProjectPageScroll() {
+  if (typeof window === "undefined") return;
+  if (isDesktopViewport()) return;
+  window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+}

@@ -233,7 +233,7 @@ export function ResumeContent() {
   return (
     <main
       data-resume-page=""
-      className="mx-auto max-w-3xl px-4 py-10 pb-[max(2rem,env(safe-area-inset-bottom))] sm:px-6 sm:py-16 md:py-24"
+      className="mx-auto w-full max-w-3xl overflow-x-clip px-4 py-10 pb-[max(2rem,env(safe-area-inset-bottom))] sm:px-6 sm:py-16 md:py-24"
     >
       <TransitionLink
         href="/"
@@ -317,7 +317,7 @@ export function ResumeContent() {
       <ResumeSection title="Professional Summary" revealText={revealText}>
         {revealText(
           [resumeSummary],
-          "font-sans text-base leading-relaxed text-white sm:text-lg",
+          "break-words font-sans text-base leading-relaxed text-white sm:text-lg",
         )}
       </ResumeSection>
 
@@ -347,7 +347,7 @@ export function ResumeContent() {
             )}
             {revealText(
               project.bullets.map((bullet) => `• ${bullet}`),
-              "mt-3 space-y-2 font-sans text-sm leading-relaxed text-text-muted",
+              "mt-3 space-y-2 break-words font-sans text-sm leading-relaxed text-text-muted",
             )}
           </article>
         ))}
@@ -382,7 +382,7 @@ export function ResumeContent() {
             )}
             {revealText(
               job.bullets.map((bullet) => `• ${bullet}`),
-              "mt-3 space-y-2 font-sans text-sm leading-relaxed text-text-muted",
+              "mt-3 space-y-2 break-words font-sans text-sm leading-relaxed text-text-muted",
             )}
           </article>
         ))}
@@ -398,7 +398,7 @@ export function ResumeContent() {
           "mt-1 font-sans text-sm text-gold",
         )}
         {revealLine(
-          <p className="mt-3 font-sans text-sm leading-relaxed text-text-muted">
+          <p className="mt-3 break-words font-sans text-sm leading-relaxed text-text-muted">
             <span className="text-white">Relevant Coursework: </span>
             {resumeEducation.coursework}
           </p>,
@@ -415,7 +415,7 @@ export function ResumeContent() {
               )}
               {revealText(
                 [group.items],
-                "mt-1 font-sans text-sm leading-relaxed text-text-muted",
+                "mt-1 break-words font-sans text-sm leading-relaxed text-text-muted",
               )}
             </div>
           ))}

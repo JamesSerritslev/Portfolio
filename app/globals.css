@@ -228,8 +228,20 @@ html:is(.nav-exit-project, .nav-exit-resume, .nav-enter-project)
   top: 0;
   left: var(--reveal-left, 0);
   z-index: 1;
-  width: 100vw;
+  width: var(--reveal-width, 100vw);
   height: 100%;
+}
+
+/* Resume line-reveal wipes extend past the viewport; clip horizontal overflow on mobile */
+html:has([data-resume-page]),
+html:has([data-resume-page]) body {
+  overflow-x: clip;
+}
+
+[data-resume-page] {
+  overflow-x: clip;
+  width: 100%;
+  max-width: 100%;
 }
 
 .reveal-line::after {

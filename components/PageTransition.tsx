@@ -7,7 +7,10 @@ import {
   clearNavScrollLock,
   readPendingTransition,
 } from "@/lib/navigation-transition";
-import { forceResetHomeDocument } from "@/lib/home-scroll-lock";
+import {
+  forceResetHomeDocument,
+  resetMobileProjectPageScroll,
+} from "@/lib/home-scroll-lock";
 import { usePathname } from "next/navigation";
 import { useLayoutEffect, useRef } from "react";
 
@@ -24,6 +27,10 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
     }
 
     clearExitTransitionClasses();
+
+    if (pathname.startsWith("/projects/")) {
+      resetMobileProjectPageScroll();
+    }
 
     const transition = readPendingTransition();
 

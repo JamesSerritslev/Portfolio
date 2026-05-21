@@ -7,7 +7,10 @@ import {
   releaseHomeScrollLock,
 } from "@/lib/home-scroll-lock";
 import { runArcEntrance } from "@/lib/arc-entrance";
-import { skipHomeEntranceAnimations, wasPageReloaded } from "@/lib/page-reload";
+import {
+  isInitialDocumentLoad,
+  skipHomeEntranceAnimations,
+} from "@/lib/page-reload";
 import { useNavigationStore } from "@/store/navigationStore";
 import { usePathname } from "next/navigation";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
@@ -28,7 +31,10 @@ interface ProjectCardsGalleryProps {
 
 function shouldPlayArcEntrance(): boolean {
   if (useNavigationStore.getState().navigatedFromResume) return false;
-  return wasPageReloaded("/");
+  if (document.documentElement.classList.contains("skip-home-entrance")) {
+    return false;
+  }
+  return isInitialDocumentLoad();
 }
 
 export function ProjectCardsGallery({ projects }: ProjectCardsGalleryProps) {

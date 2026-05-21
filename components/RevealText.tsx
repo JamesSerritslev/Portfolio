@@ -5,9 +5,11 @@ import type { CSSProperties, ReactNode } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 function syncRevealOffset(element: HTMLElement) {
+  const { left } = element.getBoundingClientRect();
+  element.style.setProperty("--reveal-left", `${-left}px`);
   element.style.setProperty(
-    "--reveal-left",
-    `${-element.getBoundingClientRect().left}px`,
+    "--reveal-width",
+    `${document.documentElement.clientWidth}px`,
   );
 }
 
