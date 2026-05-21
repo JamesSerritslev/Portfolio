@@ -63,7 +63,8 @@ html.skip-home-entrance .animate-fade-in {
   transform: none;
 }
 
-html.skip-home-entrance [data-arc-stage] > a {
+html.skip-home-entrance [data-arc-stage] > a,
+html.skip-home-entrance [data-mobile-card-stage] > a {
   opacity: 1;
   visibility: visible;
 }
@@ -305,6 +306,13 @@ html:has([data-resume-page]) body {
   }
 
   [data-arc-stage]:not([data-arc-ready]) > a {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@media (max-width: 767px) {
+  [data-mobile-card-stage]:not([data-mobile-card-ready]) > a {
     opacity: 0;
     visibility: hidden;
   }

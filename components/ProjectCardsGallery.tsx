@@ -7,6 +7,7 @@ import {
   releaseHomeScrollLock,
 } from "@/lib/home-scroll-lock";
 import { runArcEntrance } from "@/lib/arc-entrance";
+import { runStackEntrance } from "@/lib/stack-entrance";
 import {
   isInitialDocumentLoad,
   skipHomeEntranceAnimations,
@@ -29,7 +30,7 @@ interface ProjectCardsGalleryProps {
   projects: Project[];
 }
 
-function shouldPlayArcEntrance(): boolean {
+function shouldPlayCardEntrance(): boolean {
   if (useNavigationStore.getState().navigatedFromResume) return false;
   if (document.documentElement.classList.contains("skip-home-entrance")) {
     return false;
@@ -40,6 +41,7 @@ function shouldPlayArcEntrance(): boolean {
 export function ProjectCardsGallery({ projects }: ProjectCardsGalleryProps) {
   const [hoveredSlug, setHoveredSlug] = useState<string | null>(null);
   const stageRef = useRef<HTMLDivElement>(null);
+  const mobileStageRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -47,58 +49,73 @@ export function ProjectCardsGallery({ projects }: ProjectCardsGalleryProps) {
   }, []);
 
   useLayoutEffect(() => {
-    const stage = stageRef.current;
-    if (!stage) return;
+    const isDesktop = window.matchMedia("(min-width: 768px)").matches;
+    const stage = isDesktop ? stageRef.current : mobileStageRef.current;
 
-    const markStageReady = () => stage.setAttribute("data-arc-ready", "");
+    const markAllStagesReady = () => {
+      stageRef.current?.setAttribute("data-arc-ready", "");
+      mobileStageRef.current?.setAttribute("data-mobile-card-ready", "");
+    };
 
     const skipEntrance = () => {
       skipHomeEntranceAnimations();
       useNavigationStore.getState().setNavigatedFromResume(false);
-      markStageReady();
+      markAllStagesReady();
       releaseHomeScrollLock();
     };
 
-    if (!window.matchMedia("(min-width: 768px)").matches) {
-      skipEntrance();
-      return;
-    }
+    if (!stage) return;
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       skipEntrance();
       return;
     }
 
-    if (!shouldPlayArcEntrance()) {
+    if (!shouldPlayCardEntrance()) {
       skipEntrance();
       return;
     }
 
-    ensureHomeScrollLock();
-
     const cards = Array.from(stage.querySelectorAll<HTMLElement>(":scope > a"));
     if (cards.length === 0) {
-      markStageReady();
+      markAllStagesReady();
       return;
     }
 
-    const cancelArc = runArcEntrance(cards, stage, {
-      delay: ARC_ENTRANCE_DELAY_MS,
-      onComplete: releaseHomeScrollLock,
-    });
+    let cancelEntrance = () => {};
 
-    markStageReady();
+    if (isDesktop) {
+      ensureHomeScrollLock();
+      cancelEntrance = runArcEntrance(cards, stage, {
+        delay: ARC_ENTRANCE_DELAY_MS,
+        onComplete: releaseHomeScrollLock,
+      });
+    } else {
+      cancelEntrance = runStackEntrance(cards, {
+        delay: ARC_ENTRANCE_DELAY_MS,
+      });
+    }
+
+    markAllStagesReady();
+
+    const desktopStage = stageRef.current;
+    const mobileStage = mobileStageRef.current;
 
     return () => {
-      stage.removeAttribute("data-arc-ready");
-      cancelArc();
+      desktopStage?.removeAttribute("data-arc-ready");
+      mobileStage?.removeAttribute("data-mobile-card-ready");
+      cancelEntrance();
     };
   }, [pathname, projects]);
 
   return (
     <>
       {/* Mobile & tablet portrait: scrollable stack */}
-      <div className="flex flex-col items-center gap-6 pb-4 sm:gap-8 sm:pb-6 md:hidden">
+      <div
+        ref={mobileStageRef}
+        data-mobile-card-stage=""
+        className="flex flex-col items-center gap-6 pb-4 sm:gap-8 sm:pb-6 md:hidden"
+      >
         {projects.map((project) => (
           <ProjectCard key={project.slug} project={project} variant="gallery" />
         ))}
