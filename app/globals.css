@@ -249,12 +249,6 @@ html:has([data-resume-page]) body {
   overflow-x: clip;
 }
 
-[data-resume-page] {
-  overflow-x: clip;
-  width: 100%;
-  max-width: 100%;
-}
-
 .reveal-line::after {
   background: #9f956c;
   transform: translateX(-101%);
