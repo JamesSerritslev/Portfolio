@@ -53,8 +53,7 @@ export const projects: Project[] = [
     slug: "analogue-room",
     title: "The Analogue Room",
     date: "May 2026",
-    inProgress: true,
-    liveUrl: "https://theanalogueroom.com",
+    liveUrl: "https://www.analogueroom.com/",
     shortDescription:
       "Content-managed venue website for a vinyl lounge and wine bar in Solvang, California.",
     fullDescription:
