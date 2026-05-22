@@ -30,7 +30,7 @@ export const resumeProjects = [
   {
     title: "The Analogue Room",
     subtitle: "Client Website — Vinyl Lounge & Wine Bar",
-    url: "https://theanalogueroom.com",
+    url: "https://www.analogueroom.com/",
     period: "May 2026",
     bullets: [
       "Content-managed marketing site for a vinyl lounge and wine bar in Solvang, California — built with Next.js and Sanity CMS.",
