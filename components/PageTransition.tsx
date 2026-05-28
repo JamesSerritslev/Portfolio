@@ -16,6 +16,10 @@ import { useLayoutEffect, useRef } from "react";
 
 const ENTER_DURATION_MS = 580;
 
+function isProjectLikePage(pathname: string) {
+  return pathname.startsWith("/projects/") || pathname === "/want-a-website";
+}
+
 export function PageTransition({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const enterTimeoutRef = useRef<number | null>(null);
@@ -30,7 +34,7 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
 
     const transition = readPendingTransition();
 
-    if (pathname.startsWith("/projects/")) {
+    if (isProjectLikePage(pathname)) {
       resetMobileProjectPageScroll();
       if (transition === "home-to-project" || transition === "project-to-project") {
         window.scrollTo({ top: 0, left: 0, behavior: "instant" });
@@ -39,7 +43,7 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
 
     const shouldEnterProject =
       (transition === "home-to-project" || transition === "project-to-project") &&
-      pathname.startsWith("/projects/");
+      isProjectLikePage(pathname);
     const shouldEnterHome =
       (transition === "project-to-home" || transition === "resume-to-home") &&
       pathname === "/";

@@ -75,33 +75,6 @@ export const projects: Project[] = [
     ],
     imageUrl: "/images/analogue-room.png",
   },
-  {
-    slug: "standing-sun-wines",
-    title: "Standing Sun Wines",
-    date: "May 2026",
-    inProgress: true,
-    liveUrl: "https://standingsunwines.com",
-    shortDescription:
-      "Next.js + Sanity rebuild for a Santa Ynez Valley winery — content-managed marketing pages, events, and lead capture.",
-    fullDescription:
-      "Full redesign and rebuild of the public site for Standing Sun Wines, a custom-crush winery and event venue in Buellton, California. The project migrates a static design-first export into a modern, content-managed Next.js application. Editors manage page layouts and copy through a modular Sanity section system, preview changes in context, and publish without touching code. The site includes event listing and detail pages, contact and inquiry forms, newsletter signup, and full SEO metadata — all while keeping the original brand look and feel.",
-    stack: [
-      {
-        category: "Frontend",
-        items: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4"],
-      },
-      {
-        category: "CMS",
-        items: ["Sanity v5", "Portable Text", "Presentation Tool & Draft Mode"],
-      },
-      {
-        category: "Integrations",
-        items: ["Resend", "Mailchimp", "Mapbox GL"],
-      },
-      { category: "Tooling", items: ["Sharp", "Vercel", "Git"] },
-    ],
-    imageUrl: "/images/standing-sun-wines.png",
-  },
 ];
 
 export function getProjectBySlug(slug: string): Project | undefined {

@@ -1,6 +1,8 @@
 "use client";
 
 import { ProjectCard } from "@/components/ProjectCard";
+import { WantWebsiteCard } from "@/components/WantWebsiteCard";
+import { WANT_WEBSITE_CARD } from "@/data/want-a-website";
 import type { Project } from "@/data/projects";
 import {
   ensureHomeScrollLock,
@@ -16,7 +18,7 @@ import { useNavigationStore } from "@/store/navigationStore";
 import { usePathname } from "next/navigation";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
-/** Staggered positions: BandScope (left) → Analogue Room (center) → Standing Sun (right). */
+/** Staggered positions: BandScope (left) → Analogue Room (center) → Want a Website (right). */
 const GALLERY_LAYOUTS = [
   "md:absolute md:left-[2%] md:top-[6%] md:z-10 md:-rotate-[13deg]",
   "md:absolute md:left-[30%] md:top-[12%] md:z-20 md:rotate-0",
@@ -119,6 +121,7 @@ export function ProjectCardsGallery({ projects }: ProjectCardsGalleryProps) {
         {projects.map((project) => (
           <ProjectCard key={project.slug} project={project} variant="gallery" />
         ))}
+        <WantWebsiteCard />
       </div>
 
       {/* Desktop (md+): staggered overlap */}
@@ -138,6 +141,12 @@ export function ProjectCardsGallery({ projects }: ProjectCardsGalleryProps) {
             onMouseLeave={() => setHoveredSlug(null)}
           />
         ))}
+        <WantWebsiteCard
+          layoutClassName={GALLERY_LAYOUTS[projects.length]}
+          isElevated={hoveredSlug === WANT_WEBSITE_CARD.id}
+          onMouseEnter={() => setHoveredSlug(WANT_WEBSITE_CARD.id)}
+          onMouseLeave={() => setHoveredSlug(null)}
+        />
       </div>
     </>
   );
