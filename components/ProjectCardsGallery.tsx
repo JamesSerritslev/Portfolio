@@ -117,7 +117,7 @@ export function ProjectCardsGallery({ projects }: ProjectCardsGalleryProps) {
       <div
         ref={mobileStageRef}
         data-mobile-card-stage=""
-        className="flex flex-col items-center gap-6 pb-4 sm:gap-8 sm:pb-6 md:hidden"
+        className="flex w-full min-w-0 max-w-full flex-col items-center gap-6 overflow-x-clip pb-4 sm:gap-8 sm:pb-6 md:hidden"
       >
         {projects.map((project) => (
           <ProjectCard key={project.slug} project={project} variant="gallery" />

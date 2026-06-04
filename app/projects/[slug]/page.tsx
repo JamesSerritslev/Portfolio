@@ -1,4 +1,4 @@
-import { BackToHomeMobileBar } from "@/components/BackToHomeMobileBar";
+import { ProjectInnerMobileTopBar } from "@/components/ProjectInnerMobileTopBar";
 import { ProjectScrollNav } from "@/components/ProjectScrollNav";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -42,11 +42,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   return (
     <main
       data-project-page=""
-      className="mx-auto max-w-4xl overflow-x-hidden px-4 pt-3 pb-[max(2.5rem,env(safe-area-inset-bottom))] sm:px-6 sm:pb-16 md:py-24"
+      className="mx-auto w-full min-w-0 max-w-4xl overflow-x-clip px-4 pt-3 pb-[max(2.5rem,env(safe-area-inset-bottom))] sm:px-6 sm:pb-16 md:py-24"
     >
-      <BackToHomeMobileBar />
-      <section className="relative">
-        <div className="flex flex-col items-center gap-6 text-center md:mt-8 md:flex-row md:items-start md:justify-between md:gap-10 md:text-left">
+      <ProjectInnerMobileTopBar />
+      <section className="relative min-w-0">
+        <div className="flex w-full min-w-0 flex-col items-center gap-6 text-center md:mt-8 md:flex-row md:items-start md:justify-between md:gap-10 md:text-left">
         <div className="min-w-0 md:flex-1">
           <h1 className="font-serif text-3xl text-white sm:text-4xl md:text-5xl">
             {project.title}

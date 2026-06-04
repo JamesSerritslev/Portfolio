@@ -4,15 +4,9 @@ interface SendMessageLoaderProps {
   size?: "overlay";
 }
 
-export function SendMessageLoader({ size }: SendMessageLoaderProps) {
+function LoaderGraphic() {
   return (
-    <span
-      className={cn(
-        "send-message-loader",
-        size === "overlay" && "send-message-loader--overlay",
-      )}
-      aria-hidden
-    >
+    <>
       <span className="send-message-loader__longfazers">
         <span />
         <span />
@@ -31,6 +25,24 @@ export function SendMessageLoader({ size }: SendMessageLoaderProps) {
         </span>
         <span className="send-message-loader__face" />
       </span>
+    </>
+  );
+}
+
+export function SendMessageLoader({ size }: SendMessageLoaderProps) {
+  if (size === "overlay") {
+    return (
+      <span className="send-message-loader__overlay-stage" aria-hidden>
+        <span className="send-message-loader send-message-loader--overlay">
+          <LoaderGraphic />
+        </span>
+      </span>
+    );
+  }
+
+  return (
+    <span className="send-message-loader" aria-hidden>
+      <LoaderGraphic />
     </span>
   );
 }

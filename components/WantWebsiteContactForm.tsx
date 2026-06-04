@@ -27,6 +27,10 @@ const DISMISS_SCROLL_OFFSET_PX = -30;
 const inputClassName =
   "w-full rounded-xl border-2 border-[#9F956C]/25 bg-black px-4 py-3 font-sans text-sm text-white outline-none transition-colors placeholder:text-[#666666] focus:border-[#9F956C]";
 
+function prefersReducedMotion() {
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
 function scrollToPerformanceOnDismiss() {
   const performanceSection = document.getElementById(
     WANT_WEBSITE_PERFORMANCE_SECTION_ID,
@@ -100,15 +104,12 @@ export function WantWebsiteContactForm() {
       return;
     }
 
-    const reducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
     try {
       setFormState("submitting");
+      setErrorMessage(null);
       const loaderStartedAt = Date.now();
 
-      if (!reducedMotion) {
+      if (!prefersReducedMotion()) {
         setShowButtonBubble(true);
         await delay(BUBBLE_ANIMATION_MS);
         setShowButtonBubble(false);
@@ -177,7 +178,7 @@ export function WantWebsiteContactForm() {
           : "closed";
 
   return (
-    <section className="mt-12 sm:mt-16">
+    <section className="mt-12 min-w-0 max-w-full overflow-x-clip sm:mt-16">
       <p className="font-sans text-xs font-medium uppercase tracking-[0.2em] text-[#9F956C]">
         Get in touch
       </p>
@@ -192,7 +193,7 @@ export function WantWebsiteContactForm() {
       <form
           ref={formRef}
           onSubmit={handleSubmit}
-          className="mt-8 grid gap-5 sm:grid-cols-2"
+          className="mt-8 grid w-full min-w-0 max-w-full gap-5 sm:grid-cols-2"
           noValidate
         >
           <label className="block sm:col-span-1">
@@ -259,7 +260,7 @@ export function WantWebsiteContactForm() {
             </p>
           ) : null}
 
-          <div className="sm:col-span-2">
+          <div className="max-w-full overflow-x-clip sm:col-span-2">
             <SendMessageActions
               state={buttonState}
               overlayPhase={overlayPhase}

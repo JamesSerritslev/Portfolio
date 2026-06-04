@@ -84,5 +84,5 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
     };
   }, [pathname]);
 
-  return children;
+  return <div className="w-full min-w-0 overflow-x-clip">{children}</div>;
 }

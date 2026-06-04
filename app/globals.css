@@ -177,7 +177,21 @@ html:is(
     .nav-enter-project,
     .nav-scroll-lock
   ) {
+  overflow-x: clip;
   overscroll-behavior: none;
+}
+
+html:is(
+    .nav-exit-home,
+    .nav-exit-project,
+    .nav-exit-resume,
+    .nav-enter-home,
+    .nav-enter-project,
+    .nav-scroll-lock
+  )
+  body {
+  overflow-x: clip;
+  max-width: 100vw;
 }
 
 /* Scrollable pages: hide classic body scrollbar during transition (keep Edge overlay) */
@@ -432,9 +446,14 @@ html:has([data-resume-page]) body {
   }
   body {
     @apply bg-background text-foreground;
+    overflow-x: clip;
+    max-width: 100vw;
   }
   html {
     @apply font-sans;
+    overflow-x: clip;
+    width: 100%;
+    overscroll-behavior-x: none;
   }
 }
 
@@ -613,6 +632,36 @@ html:has([data-resume-page]) body {
   .bubble-btn--clicked:not(:disabled)::after {
     animation: none;
   }
+
+  .want-website-skeleton__shape {
+    animation: none;
+    fill: rgb(159 149 108 / 0.18);
+    stroke: rgb(159 149 108 / 0.36);
+  }
+}
+
+/* Want a Website card — content skeleton pulse */
+.want-website-skeleton__shape {
+  fill: rgb(159 149 108 / 0.16);
+  animation: want-website-skeleton-pulse 2.8s ease-in-out infinite;
+}
+
+.want-website-skeleton__shape--outlined {
+  stroke: rgb(159 149 108 / 0.34);
+  stroke-width: 0.55;
+}
+
+@keyframes want-website-skeleton-pulse {
+  0%,
+  100% {
+    fill: rgb(159 149 108 / 0.13);
+    stroke: rgb(159 149 108 / 0.3);
+  }
+
+  50% {
+    fill: rgb(159 149 108 / 0.22);
+    stroke: rgb(159 149 108 / 0.4);
+  }
 }
 
 /* Send message loader — Uiverse speeder by anand_4957 */
@@ -623,6 +672,8 @@ html:has([data-resume-page]) body {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  max-width: 100vw;
   pointer-events: none;
 }
 
@@ -666,8 +717,10 @@ html:has([data-resume-page]) body {
   z-index: 1;
   display: grid;
   place-items: center;
-  width: min(90vw, 28rem);
+  width: min(100%, 28rem);
+  max-width: calc(100vw - 2rem);
   padding: 0 1rem;
+  overflow: hidden;
 }
 
 .send-message-overlay__loader-panel,
@@ -678,6 +731,9 @@ html:has([data-resume-page]) body {
   align-items: center;
   justify-content: center;
   gap: 1.5rem;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
   transition:
     opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1),
     transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
@@ -717,6 +773,8 @@ html:has([data-resume-page]) body {
 .thank-you-message {
   position: relative;
   width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .thank-you-message__close {
@@ -887,11 +945,26 @@ html:has([data-resume-page]) body {
 
 .send-message-actions {
   display: inline-flex;
+  max-width: 100%;
   align-items: center;
+  overflow-x: clip;
+}
+
+.send-message-loader__overlay-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min(92vw, 24rem);
+  height: 8rem;
+  margin-inline: auto;
+  overflow: hidden;
+  flex-shrink: 0;
 }
 
 .send-message-loader {
   --send-loader-color: #9f956c;
+  --loader-offset-x: -2rem;
+  --loader-scale: 3;
   position: relative;
   display: inline-block;
   width: 72px;
@@ -903,9 +976,34 @@ html:has([data-resume-page]) body {
 .send-message-loader--overlay {
   width: 120px;
   height: 40px;
-  transform: scale(3) translateX(-2rem);
+  flex-shrink: 0;
+  transform: scale(var(--loader-scale)) translateX(var(--loader-offset-x));
   transform-origin: center center;
   overflow: visible;
+}
+
+@media (max-width: 767px) {
+  .send-message-loader__overlay-stage {
+    width: min(calc(100vw - 2rem), 19rem);
+    height: 4.75rem;
+  }
+
+  .send-message-loader--overlay {
+    --loader-scale: 1.3;
+    --loader-offset-x: -1.5rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .send-message-loader__overlay-stage {
+    width: min(calc(100vw - 1.5rem), 17rem);
+    height: 4.25rem;
+  }
+
+  .send-message-loader--overlay {
+    --loader-scale: 1.15;
+    --loader-offset-x: -0.65rem;
+  }
 }
 
 .send-message-loader__car {

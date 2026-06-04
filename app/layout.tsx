@@ -54,8 +54,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn(dmSans.variable, dmSerif.variable, "overflow-x-hidden")}>
-      <body className="min-h-screen overflow-x-hidden bg-black font-sans text-white antialiased">
+    <html
+      lang="en"
+      className={cn(dmSans.variable, dmSerif.variable, "w-full overflow-x-clip")}
+    >
+      <body className="min-h-screen w-full max-w-[100vw] overflow-x-clip bg-black font-sans text-white antialiased">
         <HomeScrollGuard />
         <PageTransition>{children}</PageTransition>
       </body>

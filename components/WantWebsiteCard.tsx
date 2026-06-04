@@ -1,18 +1,18 @@
 "use client";
 
 import { PROJECT_IMAGE } from "@/data/projects";
+import { WantWebsiteCardSkeleton } from "@/components/WantWebsiteCardSkeleton";
 import {
   WANT_WEBSITE_CARD,
   WANT_WEBSITE_ROUTE,
 } from "@/data/want-a-website";
 import { prepareHomeToProjectNavigation, scheduleTransitionNavigation } from "@/lib/navigation-transition";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
 
-const { width: imgW, height: imgH } = PROJECT_IMAGE;
+const { height: imgH, width: imgW } = PROJECT_IMAGE;
 const IMAGE_ASPECT_PADDING = `calc(100% * ${imgH} / ${imgW})`;
 
 const cardHoverStyles =
@@ -67,14 +67,7 @@ export function WantWebsiteCard({
           className="relative w-full overflow-hidden"
           style={{ paddingBottom: IMAGE_ASPECT_PADDING }}
         >
-          <Image
-            src={WANT_WEBSITE_CARD.imageUrl}
-            alt=""
-            width={imgW}
-            height={imgH}
-            sizes="(max-width: 768px) 100vw, 320px"
-            className="absolute inset-0 h-full w-full object-cover"
-          />
+          <WantWebsiteCardSkeleton />
         </div>
       </div>
       <div className="space-y-1 px-1.5 pb-1.5 pt-1.5">

@@ -233,7 +233,7 @@ export function ResumeContent() {
   return (
     <main
       data-resume-page=""
-      className="mx-auto w-full max-w-3xl overflow-x-clip px-4 py-10 pb-[max(2rem,env(safe-area-inset-bottom))] sm:px-6 sm:py-16 md:py-24"
+      className="mx-auto w-full min-w-0 max-w-3xl overflow-x-clip px-4 py-10 pb-[max(2rem,env(safe-area-inset-bottom))] sm:px-6 sm:py-16 md:py-24"
     >
       <TransitionLink
         href="/"

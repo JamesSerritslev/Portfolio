@@ -19,14 +19,14 @@ export function BackToHomeLink({ variant }: BackToHomeLinkProps) {
       className={
         isMobile
           ? cn(
-              "inline-flex min-h-8 items-center rounded-full border border-[#9F956C]/40 bg-black/60 px-2.5 py-1 font-sans text-xs text-[#9F956C]",
+              "inline-flex max-w-full min-h-8 min-w-0 items-center justify-self-start rounded-full border border-[#9F956C]/40 bg-black/60 px-2 py-1 font-sans text-[11px] leading-none text-[#9F956C] sm:px-2.5 sm:text-xs",
             )
           : projectInnerFixedButtonClassName(
               "back-to-home-fixed left-4 max-md:hidden md:left-10",
             )
       }
     >
-      ← Back to home
+      {isMobile ? "← Home" : "← Back to home"}
     </TransitionLink>
   );
 }
