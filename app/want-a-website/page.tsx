@@ -1,7 +1,8 @@
-import { WantWebsiteBackLink } from "@/components/WantWebsiteBackLink";
+import { BackToHomeMobileBar } from "@/components/BackToHomeMobileBar";
 import { WantWebsiteContactForm } from "@/components/WantWebsiteContactForm";
 import {
   WANT_WEBSITE_CARD,
+  WANT_WEBSITE_PERFORMANCE_SECTION_ID,
   WANT_WEBSITE_SECTIONS,
 } from "@/data/want-a-website";
 import { PROJECT_IMAGE } from "@/data/projects";
@@ -17,11 +18,11 @@ export default function WantWebsitePage() {
   return (
     <main
       data-project-page=""
-      className="mx-auto max-w-4xl overflow-x-hidden px-4 py-10 pb-[max(2rem,env(safe-area-inset-bottom))] sm:px-6 sm:py-16 md:py-24"
+      className="mx-auto max-w-4xl overflow-x-hidden px-4 pt-3 pb-[max(2.5rem,env(safe-area-inset-bottom))] sm:px-6 sm:pb-16 md:py-24"
     >
-      <WantWebsiteBackLink />
-
-      <div className="mt-6 flex flex-col items-center gap-6 text-center md:mt-8 md:flex-row md:items-start md:justify-between md:gap-10 md:text-left">
+      <BackToHomeMobileBar />
+      <section className="relative">
+        <div className="flex flex-col items-center gap-6 text-center md:mt-8 md:flex-row md:items-start md:justify-between md:gap-10 md:text-left">
         <div className="min-w-0 md:flex-1">
           <h1 className="font-serif text-3xl text-white sm:text-4xl md:text-5xl">
             {WANT_WEBSITE_CARD.title}
@@ -52,10 +53,18 @@ export default function WantWebsitePage() {
           </div>
         </div>
       </div>
+      </section>
 
       <div className="mt-10 space-y-10 sm:mt-14">
         {WANT_WEBSITE_SECTIONS.map((section) => (
-          <section key={section.title}>
+          <section
+            key={section.title}
+            id={
+              section.title === "Built for performance"
+                ? WANT_WEBSITE_PERFORMANCE_SECTION_ID
+                : undefined
+            }
+          >
             <h2 className="font-serif text-2xl text-white sm:text-3xl">
               {section.title}
             </h2>

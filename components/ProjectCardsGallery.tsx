@@ -18,11 +18,12 @@ import { useNavigationStore } from "@/store/navigationStore";
 import { usePathname } from "next/navigation";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
-/** Staggered positions: BandScope (left) → Analogue Room (center) → Want a Website (right). */
+/** Staggered positions: BandScope → Analogue Room → Standing Sun → Want a Website. */
 const GALLERY_LAYOUTS = [
   "md:absolute md:left-[2%] md:top-[6%] md:z-10 md:-rotate-[13deg]",
-  "md:absolute md:left-[30%] md:top-[12%] md:z-20 md:rotate-0",
-  "md:absolute md:left-[56%] md:top-0 md:z-30 md:rotate-[13deg]",
+  "md:absolute md:left-[22%] md:top-[12%] md:z-20 md:-rotate-[4deg]",
+  "md:absolute md:left-[42%] md:top-[4%] md:z-30 md:rotate-[8deg]",
+  "md:absolute md:left-[58%] md:top-0 md:z-40 md:rotate-[13deg]",
 ] as const;
 
 /** Wait after load before cards arc in (ms). */
@@ -128,7 +129,7 @@ export function ProjectCardsGallery({ projects }: ProjectCardsGalleryProps) {
       <div
         ref={stageRef}
         data-arc-stage=""
-        className="pointer-events-none relative z-50 mx-auto hidden h-full w-full max-w-full origin-top scale-[0.88] md:block lg:scale-[0.94] xl:scale-100"
+        className="pointer-events-none relative z-50 mx-auto hidden h-full w-full max-w-full origin-top scale-[0.84] md:block lg:scale-[0.88] xl:scale-[0.93] 2xl:scale-[0.97]"
       >
         {projects.map((project, index) => (
           <ProjectCard

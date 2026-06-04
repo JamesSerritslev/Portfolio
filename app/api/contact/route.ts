@@ -40,7 +40,11 @@ export async function POST(request: Request) {
     if (error) {
       console.error("Resend error:", error);
       return NextResponse.json(
-        { error: "Unable to send your message right now." },
+        {
+          error:
+            error.message ||
+            "Unable to send your message right now.",
+        },
         { status: 500 },
       );
     }

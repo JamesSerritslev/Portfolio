@@ -4,19 +4,19 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
 import { scheduleTransitionNavigation } from "@/lib/navigation-transition";
+import type { ComponentProps } from "react";
 
-interface TransitionLinkProps {
+type TransitionLinkProps = {
   href: string;
   prepare: () => void;
-  className?: string;
-  children: React.ReactNode;
-}
+} & Omit<ComponentProps<typeof Link>, "href" | "onClick">;
 
 export function TransitionLink({
   href,
   prepare,
   className,
   children,
+  ...linkProps
 }: TransitionLinkProps) {
   const router = useRouter();
 
@@ -31,7 +31,13 @@ export function TransitionLink({
   );
 
   return (
-    <Link href={href} scroll={false} onClick={handleClick} className={className}>
+    <Link
+      href={href}
+      scroll={false}
+      onClick={handleClick}
+      className={className}
+      {...linkProps}
+    >
       {children}
     </Link>
   );

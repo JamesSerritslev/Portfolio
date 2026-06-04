@@ -1,5 +1,7 @@
 export const WANT_WEBSITE_ROUTE = "/want-a-website" as const;
 
+export const WANT_WEBSITE_PERFORMANCE_SECTION_ID = "built-for-performance";
+
 export const WANT_WEBSITE_CARD = {
   id: "want-a-website",
   title: "Want a Website?",
