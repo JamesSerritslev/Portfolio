@@ -25,7 +25,7 @@ const LOADER_DISPLAY_MS = 4000;
 const DISMISS_SCROLL_OFFSET_PX = -30;
 
 const inputClassName =
-  "w-full rounded-xl border-2 border-[#9F956C]/25 bg-black px-4 py-3 font-sans text-sm text-white outline-none transition-colors placeholder:text-[#666666] focus:border-[#9F956C]";
+  "w-full min-w-0 max-w-full box-border rounded-xl border-2 border-[#9F956C]/25 bg-black px-4 py-3 font-sans text-base text-white outline-none transition-colors placeholder:text-[#666666] focus:border-[#9F956C] md:text-sm";
 
 function prefersReducedMotion() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -178,7 +178,7 @@ export function WantWebsiteContactForm() {
           : "closed";
 
   return (
-    <section className="mt-12 min-w-0 max-w-full overflow-x-clip sm:mt-16">
+    <section className="want-website-contact-form mt-12 min-w-0 max-w-full overflow-x-clip sm:mt-16">
       <p className="font-sans text-xs font-medium uppercase tracking-[0.2em] text-[#9F956C]">
         Get in touch
       </p>
@@ -196,7 +196,7 @@ export function WantWebsiteContactForm() {
           className="mt-8 grid w-full min-w-0 max-w-full gap-5 sm:grid-cols-2"
           noValidate
         >
-          <label className="block sm:col-span-1">
+          <label className="block min-w-0 sm:col-span-1">
             <span className="mb-2 block font-sans text-xs uppercase tracking-[0.16em] text-[#9F956C]">
               Name
             </span>
@@ -210,7 +210,7 @@ export function WantWebsiteContactForm() {
             />
           </label>
 
-          <label className="block sm:col-span-1">
+          <label className="block min-w-0 sm:col-span-1">
             <span className="mb-2 block font-sans text-xs uppercase tracking-[0.16em] text-[#9F956C]">
               Phone
             </span>
@@ -238,7 +238,7 @@ export function WantWebsiteContactForm() {
             />
           </label>
 
-          <label className="block sm:col-span-2">
+          <label className="block min-w-0 sm:col-span-2">
             <span className="mb-2 block font-sans text-xs uppercase tracking-[0.16em] text-[#9F956C]">
               Message
             </span>
@@ -246,7 +246,7 @@ export function WantWebsiteContactForm() {
               name="message"
               required
               rows={6}
-              className={cn(inputClassName, "resize-y")}
+              className={cn(inputClassName, "resize-none")}
               disabled={isFormLocked}
             />
           </label>

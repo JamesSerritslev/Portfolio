@@ -640,6 +640,22 @@ html:has([data-resume-page]) body {
   }
 }
 
+/* Contact form — prevent iOS input-focus zoom overflow */
+.want-website-contact-form input,
+.want-website-contact-form textarea,
+.want-website-contact-form select {
+  font-size: 16px;
+  max-width: 100%;
+}
+
+@media (min-width: 768px) {
+  .want-website-contact-form input,
+  .want-website-contact-form textarea,
+  .want-website-contact-form select {
+    font-size: 0.875rem;
+  }
+}
+
 /* Want a Website card — content skeleton pulse */
 .want-website-skeleton__shape {
   fill: rgb(159 149 108 / 0.16);
