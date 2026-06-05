@@ -9,16 +9,32 @@
 
 @theme {
   --color-background: #000000;
+  --color-surface: #0a0a0a;
+  --color-surface-elevated: #111111;
+  --color-foreground: #ffffff;
   --color-accent: #9f956c;
   --color-accent-secondary: #153243;
   --color-text-primary: #ffffff;
   --color-text-muted: #888888;
-  --color-border-gold: rgb(159 149 108 / 0.2);
+  --color-text-placeholder: #666666;
+  --color-border-gold: rgb(159 149 108 / 0.35);
   --color-gold: #9f956c;
   --color-teal: #153243;
-  --color-gold-border: rgb(159 149 108 / 0.2);
+  --color-gold-border: rgb(159 149 108 / 0.35);
   --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-dm-serif), ui-serif, Georgia, serif;
+}
+
+/* Send message flow — tracks site accent and surfaces */
+:root {
+  --send-accent: var(--color-accent);
+  --send-accent-deep: color-mix(in srgb, var(--color-accent) 50%, #000000);
+  --send-accent-shine: color-mix(in srgb, var(--color-accent) 45%, #c9bc8c);
+  --send-accent-border: color-mix(in srgb, var(--color-accent) 40%, transparent);
+  --send-accent-soft: color-mix(in srgb, var(--color-accent) 15%, transparent);
+  --send-surface: var(--color-surface-elevated);
+  --send-background: var(--color-background);
+  --send-foreground: var(--color-foreground);
 }
 
 @utility font-sans {
@@ -372,24 +388,24 @@ html:has([data-resume-page]) body {
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
+  --background: oklch(0 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.145 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.145 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.68 0.06 95);
   --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --secondary: oklch(0.205 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.205 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.205 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(0.68 0.06 95 / 35%);
+  --input: oklch(0.205 0 0);
+  --ring: oklch(0.68 0.06 95);
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
@@ -457,33 +473,80 @@ html:has([data-resume-page]) body {
   }
 }
 
-/* Bubble button — static by default, bubble burst once on click (zjssun) */
+/* Send message button — gradient hover (Uiverse.io by vinodjangid07) */
 .bubble-btn {
+  --send-btn-deep: var(--send-accent-deep);
+  --send-btn-main: var(--send-accent);
+  --send-btn-shine: var(--send-accent-shine);
+  --send-btn-text: var(--color-gold, #9f956c);
+
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 48px;
-  padding: 10px 22px;
-  border-radius: 6px;
-  border: 2px solid rgb(159 149 108 / 0.4);
-  color: #9f956c;
-  background-color: transparent;
+  min-width: 140px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(
+    to right,
+    var(--send-btn-deep),
+    var(--send-btn-shine),
+    var(--send-btn-main),
+    var(--send-btn-main),
+    var(--send-btn-shine),
+    var(--send-btn-deep)
+  );
+  background-size: 250%;
+  background-position: left;
+  color: var(--send-btn-text);
   font-family: var(--font-sans);
   font-size: 14px;
-  font-weight: 500;
   cursor: pointer;
+  transition-duration: 1s;
+  overflow: hidden;
+  box-shadow: 0 4px 18px var(--send-accent-soft);
+}
+
+.bubble-btn__label {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 97%;
+  height: 90%;
+  padding: 0 1.25rem;
+  border-radius: 8px;
+  color: var(--send-btn-text);
+  background-color: var(--send-background);
+  background-size: 200%;
   transition:
-    color 0.2s ease,
-    border-color 0.2s ease,
-    background-color 0.2s ease,
-    transform 0.2s ease;
-  overflow: visible;
-  z-index: 0;
+    background-color 1s ease,
+    color 1s ease,
+    background-position 1s ease;
+  white-space: nowrap;
+}
+
+.bubble-btn .bubble-btn__label {
+  color: var(--send-btn-text);
+}
+
+.bubble-btn:hover:not(:disabled) {
+  background-position: right;
+  transition-duration: 1s;
+}
+
+.bubble-btn:hover:not(:disabled) .bubble-btn__label {
+  background-color: var(--send-background);
+  color: var(--send-btn-text);
+  background-position: right;
+  transition-duration: 1s;
 }
 
 .bubble-btn:active:not(:disabled) {
-  transform: scale(0.96);
+  transform: scale(0.95);
 }
 
 .bubble-btn:disabled {
@@ -491,104 +554,29 @@ html:has([data-resume-page]) body {
 }
 
 .bubble-btn:disabled:not(.bubble-btn--sending) {
-  opacity: 0.6;
-  color: #fff;
-  border-color: #9f956c;
-  background-color: #9f956c;
+  opacity: 0.65;
 }
 
 .bubble-btn--sending:disabled {
   opacity: 1;
   cursor: wait;
-  color: #fff;
-  border-color: #9f956c;
-  background-color: #9f956c;
+  background-position: right;
 }
 
-.bubble-btn::before,
-.bubble-btn::after {
-  position: absolute;
-  content: "";
-  width: 150%;
-  left: 50%;
-  height: 100%;
-  transform: translateX(-50%);
-  z-index: -1;
-  background-repeat: no-repeat;
-  pointer-events: none;
+.bubble-btn--sending:disabled .bubble-btn__label {
+  background-position: right;
+  background-color: var(--send-background);
+  color: var(--send-btn-text);
 }
 
 .bubble-btn--clicked:not(:disabled) {
-  color: #fff;
-  border-color: #9f956c;
-  background-color: #9f956c;
+  background-position: right;
 }
 
-.bubble-btn--clicked:not(:disabled)::before {
-  top: -70%;
-  background-image: radial-gradient(circle, #9f956c 20%, transparent 20%),
-    radial-gradient(circle, transparent 20%, #9f956c 20%, transparent 30%),
-    radial-gradient(circle, #9f956c 20%, transparent 20%),
-    radial-gradient(circle, #9f956c 20%, transparent 20%),
-    radial-gradient(circle, transparent 10%, #9f956c 15%, transparent 20%),
-    radial-gradient(circle, #9f956c 20%, transparent 20%),
-    radial-gradient(circle, #9f956c 20%, transparent 20%),
-    radial-gradient(circle, #9f956c 20%, transparent 20%),
-    radial-gradient(circle, #9f956c 20%, transparent 20%);
-  background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%, 15% 15%,
-    10% 10%, 18% 18%;
-  background-position: 50% 120%;
-  animation: bubble-btn-top-bubbles 0.6s ease forwards;
-}
-
-.bubble-btn--clicked:not(:disabled)::after {
-  bottom: -70%;
-  background-image: radial-gradient(circle, #9f956c 20%, transparent 20%),
-    radial-gradient(circle, #9f956c 20%, transparent 20%),
-    radial-gradient(circle, transparent 10%, #9f956c 15%, transparent 20%),
-    radial-gradient(circle, #9f956c 20%, transparent 20%),
-    radial-gradient(circle, #9f956c 20%, transparent 20%),
-    radial-gradient(circle, #9f956c 20%, transparent 20%),
-    radial-gradient(circle, #9f956c 20%, transparent 20%);
-  background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 20% 20%, 18% 18%;
-  background-position: 50% 0%;
-  animation: bubble-btn-bottom-bubbles 0.6s ease forwards;
-}
-
-@keyframes bubble-btn-top-bubbles {
-  0% {
-    background-position: 5% 90%, 10% 90%, 10% 90%, 15% 90%, 25% 90%, 25% 90%,
-      40% 90%, 55% 90%, 70% 90%;
-  }
-
-  50% {
-    background-position: 0% 80%, 0% 20%, 10% 40%, 20% 0%, 30% 30%, 22% 50%,
-      50% 50%, 65% 20%, 90% 30%;
-  }
-
-  100% {
-    background-position: 0% 70%, 0% 10%, 10% 30%, 20% -10%, 30% 20%, 22% 40%,
-      50% 40%, 65% 10%, 90% 20%;
-    background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
-  }
-}
-
-@keyframes bubble-btn-bottom-bubbles {
-  0% {
-    background-position: 10% -10%, 30% 10%, 55% -10%, 70% -10%, 85% -10%,
-      70% -10%, 70% 0%;
-  }
-
-  50% {
-    background-position: 0% 80%, 20% 80%, 45% 60%, 60% 100%, 75% 70%, 95% 60%,
-      105% 0%;
-  }
-
-  100% {
-    background-position: 0% 90%, 20% 90%, 45% 70%, 60% 110%, 75% 80%, 95% 70%,
-      110% 10%;
-    background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
-  }
+.bubble-btn--clicked:not(:disabled) .bubble-btn__label {
+  background-position: right;
+  background-color: var(--send-background);
+  color: var(--send-btn-text);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -628,9 +616,18 @@ html:has([data-resume-page]) body {
     transform: none;
   }
 
-  .bubble-btn--clicked:not(:disabled)::before,
-  .bubble-btn--clicked:not(:disabled)::after {
-    animation: none;
+  .bubble-btn:hover:not(:disabled),
+  .bubble-btn--clicked:not(:disabled),
+  .bubble-btn--sending:disabled {
+    background-position: left;
+    transition-duration: 0.01ms;
+  }
+
+  .bubble-btn:hover:not(:disabled) .bubble-btn__label,
+  .bubble-btn--clicked:not(:disabled) .bubble-btn__label,
+  .bubble-btn--sending:disabled .bubble-btn__label {
+    background-position: left;
+    transition-duration: 0.01ms;
   }
 
   .want-website-skeleton__shape {
@@ -703,7 +700,7 @@ html:has([data-resume-page]) body {
   margin: 0;
   padding: 0;
   border: none;
-  background: rgb(0 0 0 / 0.45);
+  background: color-mix(in srgb, var(--send-background) 72%, transparent);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   opacity: 0;
@@ -778,8 +775,8 @@ html:has([data-resume-page]) body {
   padding: 2.25rem 1.5rem 1.25rem;
   text-align: center;
   border-radius: 1rem;
-  border: 2px solid rgb(159 149 108 / 0.4);
-  background: rgb(0 0 0 / 0.85);
+  border: 2px solid var(--send-accent-border);
+  background: color-mix(in srgb, var(--send-surface) 96%, transparent);
   opacity: 0;
   transform: scale(0.92) translateY(8px);
   pointer-events: none;
@@ -807,7 +804,7 @@ html:has([data-resume-page]) body {
   border: none;
   border-radius: 0.5rem;
   background: transparent;
-  color: #9f956c;
+  color: var(--send-accent);
   font-size: 1.5rem;
   line-height: 1;
   cursor: pointer;
@@ -817,17 +814,18 @@ html:has([data-resume-page]) body {
 }
 
 .thank-you-message__close:hover {
-  color: #fff;
-  background: rgb(159 149 108 / 0.15);
+  color: var(--send-foreground);
+  background: var(--send-accent-soft);
 }
 
 .thank-you-message__close:focus-visible {
-  outline: 2px solid #9f956c;
+  outline: 2px solid var(--send-accent);
   outline-offset: 2px;
 }
 
 .thank-you-message__sent {
   margin: 0;
+  color: var(--send-accent);
 }
 
 .thank-you-message__body {
@@ -902,6 +900,7 @@ html:has([data-resume-page]) body {
   display: inline-flex;
   align-items: center;
   margin: 0;
+  color: var(--send-accent);
 }
 
 .send-message-overlay__dots {
@@ -916,7 +915,7 @@ html:has([data-resume-page]) body {
   width: 0.35rem;
   height: 0.35rem;
   border-radius: 50%;
-  background: #9f956c;
+  background: var(--send-accent);
   animation: send-message-dot-pulse 1.2s ease-in-out infinite;
 }
 
@@ -978,7 +977,7 @@ html:has([data-resume-page]) body {
 }
 
 .send-message-loader {
-  --send-loader-color: #9f956c;
+  --send-loader-color: var(--send-accent);
   --loader-offset-x: -2rem;
   --loader-scale: 3;
   position: relative;

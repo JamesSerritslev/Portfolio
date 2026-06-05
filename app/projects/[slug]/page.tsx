@@ -48,7 +48,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       <section className="relative min-w-0">
         <div className="flex w-full min-w-0 flex-col items-center gap-6 text-center md:mt-8 md:flex-row md:items-start md:justify-between md:gap-10 md:text-left">
         <div className="min-w-0 md:flex-1">
-          <h1 className="font-serif text-3xl text-white sm:text-4xl md:text-5xl">
+          <h1 className="font-serif text-3xl text-foreground sm:text-4xl md:text-5xl">
             {project.title}
           </h1>
           <div className="mt-3 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 font-sans text-sm text-[#9F956C] sm:mt-4 md:justify-start md:gap-x-6">
@@ -57,22 +57,22 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             </time>
             {project.inProgress && (
               <>
-                <span className="hidden text-[#888888] md:inline" aria-hidden>
+                <span className="hidden text-text-muted md:inline" aria-hidden>
                   ·
                 </span>
-                <span className="rounded-full border border-[#9F956C]/40 px-3 py-1 font-sans text-xs uppercase tracking-wider text-white">
+                <span className="rounded-full border border-[#9F956C]/40 px-3 py-1 font-sans text-xs uppercase tracking-wider text-foreground">
                   In Progress
                 </span>
               </>
             )}
-            <span className="hidden text-[#888888] md:inline" aria-hidden>
+            <span className="hidden text-text-muted md:inline" aria-hidden>
               ·
             </span>
             <a
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-[44px] items-center py-2 leading-none transition-colors hover:text-white active:text-white md:min-h-0 md:py-0"
+              className="inline-flex min-h-[44px] items-center py-2 leading-none transition-colors hover:text-foreground active:text-foreground md:min-h-0 md:py-0"
             >
               Live Site
             </a>
@@ -84,7 +84,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         </div>
       </section>
 
-      <p className="mt-8 font-sans text-base leading-relaxed text-white sm:mt-12 sm:text-lg">
+      <p className="mt-8 font-sans text-base leading-relaxed text-foreground sm:mt-12 sm:text-lg">
         {project.fullDescription}
       </p>
 
@@ -95,14 +95,14 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         <div className="mt-4 grid gap-6 sm:mt-6 sm:grid-cols-2 sm:gap-8">
           {project.stack.map((group) => (
             <div key={group.category}>
-              <p className="mb-3 font-sans text-xs text-[#888888]">
+              <p className="mb-3 font-sans text-xs text-text-muted">
                 {group.category}
               </p>
               <ul className="flex flex-wrap gap-2">
                 {group.items.map((item) => (
                   <li
                     key={item}
-                    className="rounded-full border border-[#9F956C]/40 px-3 py-1 font-sans text-xs text-white"
+                    className="rounded-full border border-[#9F956C]/40 px-3 py-1 font-sans text-xs text-foreground"
                   >
                     {item}
                   </li>

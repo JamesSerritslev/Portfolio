@@ -35,7 +35,7 @@ function ProjectCardImage({
   return (
     <div
       className={cn(
-        "relative w-full overflow-hidden bg-black",
+        "relative w-full overflow-hidden bg-surface",
         rounded && "rounded-xl"
       )}
     >
@@ -93,7 +93,7 @@ export function ProjectCard({
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
         className={cn(
-          "group pointer-events-auto mx-auto block w-full max-w-[22rem] overflow-hidden rounded-2xl bg-black p-1 md:mx-0 md:w-[17rem] md:max-w-none lg:w-[19rem] xl:w-[21rem]",
+          "group pointer-events-auto mx-auto block w-full max-w-[22rem] overflow-hidden rounded-2xl bg-surface-elevated p-1 shadow-[0_4px_24px_rgba(0,0,0,0.45)] md:mx-0 md:w-[17rem] md:max-w-none lg:w-[19rem] xl:w-[21rem]",
           cardHoverStyles,
           "hover:scale-[1.02] active:scale-[0.99] md:active:scale-100",
           isElevated && "!z-50",
@@ -113,10 +113,10 @@ export function ProjectCard({
           >
             {project.date}
           </time>
-          <h2 className="font-serif text-lg text-white transition-colors duration-300 group-hover:text-[#9F956C] md:text-xl">
+          <h2 className="font-serif text-lg text-foreground transition-colors duration-300 group-hover:text-[#9F956C] md:text-xl">
             {project.title}
           </h2>
-          <p className="line-clamp-2 font-sans text-[11px] leading-relaxed text-[#888888] md:text-xs">
+          <p className="line-clamp-2 font-sans text-[11px] leading-relaxed text-text-muted md:text-xs">
             {project.shortDescription}
           </p>
         </div>
@@ -128,12 +128,12 @@ export function ProjectCard({
     <Link
       href={`/projects/${project.slug}`}
       className={cn(
-        "group flex flex-col overflow-hidden rounded-2xl bg-black sm:flex-row",
+        "group flex flex-col overflow-hidden rounded-2xl bg-surface-elevated shadow-[0_4px_24px_rgba(0,0,0,0.45)] sm:flex-row",
         cardHoverStyles,
         "hover:scale-[1.01]"
       )}
     >
-      <div className="relative aspect-[2476/1864] w-full shrink-0 overflow-hidden rounded-t-2xl bg-black sm:w-1/2 sm:rounded-l-2xl sm:rounded-tr-none">
+      <div className="relative aspect-[2476/1864] w-full shrink-0 overflow-hidden rounded-t-2xl bg-surface sm:w-1/2 sm:rounded-l-2xl sm:rounded-tr-none">
         <Image
           src={project.imageUrl}
           alt={project.title}
@@ -150,10 +150,10 @@ export function ProjectCard({
         >
           {project.date}
         </time>
-        <h2 className="font-serif text-2xl text-white transition-colors duration-300 group-hover:text-[#9F956C] sm:text-3xl">
+        <h2 className="font-serif text-2xl text-foreground transition-colors duration-300 group-hover:text-[#9F956C] sm:text-3xl">
           {project.title}
         </h2>
-        <p className="font-sans text-sm leading-relaxed text-[#888888] sm:text-base">
+        <p className="font-sans text-sm leading-relaxed text-text-muted sm:text-base">
           {project.shortDescription}
         </p>
       </div>

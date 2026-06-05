@@ -90,7 +90,7 @@ export function SendMessageOverlay({
         {phase === "loader" ? (
           <div className="send-message-overlay__loader-panel">
             <SendMessageLoader size="overlay" />
-            <p className="send-message-overlay__label font-sans text-sm font-medium uppercase tracking-[0.2em] text-[#9F956C]">
+            <p className="send-message-overlay__label font-sans text-sm font-medium uppercase tracking-[0.2em]">
               Sending
               <span className="send-message-overlay__dots" aria-hidden>
                 <span />

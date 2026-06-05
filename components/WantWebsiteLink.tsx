@@ -20,7 +20,7 @@ export function WantWebsiteLink({ variant }: WantWebsiteLinkProps) {
       className={
         isMobile
           ? cn(
-              "inline-flex max-w-full min-h-8 min-w-0 items-center justify-self-end rounded-full border border-[#9F956C]/40 bg-black/60 px-2 py-1 text-right font-sans text-[11px] leading-none text-[#9F956C] sm:px-2.5 sm:text-xs",
+              "inline-flex max-w-full min-h-8 min-w-0 items-center justify-self-end rounded-full border border-[#9F956C]/40 bg-surface-elevated/90 px-2 py-1 text-right font-sans text-[11px] leading-none text-[#9F956C] sm:px-2.5 sm:text-xs",
             )
           : projectInnerFixedButtonClassName(
               "want-website-fixed right-4 max-md:hidden md:right-10",

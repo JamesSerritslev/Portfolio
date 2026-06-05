@@ -37,7 +37,7 @@ export function ResumeAnimationNote({
           onClick={toggle}
           aria-expanded={open}
           aria-controls={titleId}
-          className="font-sans text-sm text-text-muted transition-colors hover:text-white active:text-white"
+          className="font-sans text-sm text-text-muted transition-colors hover:text-foreground active:text-foreground"
         >
           Animation Details
         </button>
@@ -47,7 +47,7 @@ export function ResumeAnimationNote({
         <div
           ref={panelRef}
           id={titleId}
-          className="mt-4 rounded-lg border border-gold-border bg-black p-5 sm:p-6"
+          className="mt-4 rounded-lg border border-gold-border bg-surface p-5 sm:p-6"
         >
           <h2 className="font-sans text-xs font-medium uppercase tracking-[0.18em] text-gold">
             Animation Details
@@ -59,7 +59,7 @@ export function ResumeAnimationNote({
               href={CODEPEN_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gold underline-offset-2 transition-colors hover:text-white hover:underline"
+              className="text-gold underline-offset-2 transition-colors hover:text-foreground hover:underline"
             >
               Álvaro Trigo&apos;s CodePen
             </a>

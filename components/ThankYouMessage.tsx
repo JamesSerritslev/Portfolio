@@ -19,10 +19,10 @@ export function ThankYouMessage({ onDismiss, className }: ThankYouMessageProps) 
       >
         <span aria-hidden>×</span>
       </button>
-      <p className="thank-you-message__sent font-sans text-sm font-semibold uppercase tracking-[0.28em] text-[#9F956C] sm:text-base">
+      <p className="thank-you-message__sent font-sans text-sm font-semibold uppercase tracking-[0.28em] sm:text-base">
         SENT
       </p>
-      <p className="thank-you-message__body font-sans text-sm leading-relaxed text-white sm:text-base">
+      <p className="thank-you-message__body font-sans text-sm leading-relaxed text-foreground sm:text-base">
         {THANK_YOU_MESSAGE}
       </p>
     </div>

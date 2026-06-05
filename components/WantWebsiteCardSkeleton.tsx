@@ -10,7 +10,7 @@ export function WantWebsiteCardSkeleton({ className }: WantWebsiteCardSkeletonPr
     <svg
       viewBox="0 0 247.6 186.4"
       preserveAspectRatio="none"
-      className={cn("want-website-card-skeleton absolute inset-0 h-full w-full bg-black", className)}
+      className={cn("want-website-card-skeleton absolute inset-0 h-full w-full bg-transparent", className)}
       aria-hidden
     >
       {/* Header — logo, nav pills, CTA */}

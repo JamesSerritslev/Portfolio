@@ -41,10 +41,10 @@ export function ProjectScrollNav({
         onClick={navigateToNext}
         className="group mt-6 w-full text-left"
       >
-        <span className="font-serif text-2xl text-white transition-colors duration-300 group-hover:text-[#9F956C] sm:text-3xl">
+        <span className="font-serif text-2xl text-foreground transition-colors duration-300 group-hover:text-[#9F956C] sm:text-3xl">
           {nextProject.title}
         </span>
-        <span className="mt-2 block font-sans text-sm text-[#888888] transition-colors duration-300 group-hover:text-white">
+        <span className="mt-2 block font-sans text-sm text-text-muted transition-colors duration-300 group-hover:text-foreground">
           View next project
         </span>
       </button>

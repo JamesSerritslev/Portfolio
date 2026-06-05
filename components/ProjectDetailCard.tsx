@@ -10,7 +10,7 @@ interface ProjectDetailCardProps {
 }
 
 const cardHoverStyles =
-  "border-2 border-[#9F956C]/25 transition-all duration-300 hover:border-[#9F956C] hover:shadow-[0_0_0_1px_#9F956C,0_12px_32px_rgba(159,149,108,0.2)]";
+  "border-2 border-[#9B4B35]/25 transition-all duration-300 hover:border-[#9B4B35] hover:shadow-[0_0_0_1px_#9B4B35,0_12px_32px_rgba(155,75,53,0.2)]";
 
 export function ProjectDetailCard({
   project,
@@ -22,7 +22,7 @@ export function ProjectDetailCard({
       target="_blank"
       rel="noopener noreferrer"
       className={cn(
-        "group block overflow-hidden bg-black",
+        "group block overflow-hidden bg-surface",
         compact ? "rounded-2xl p-1" : "rounded-lg",
         cardHoverStyles,
         compact
@@ -32,7 +32,7 @@ export function ProjectDetailCard({
     >
       <div
         className={cn(
-          "overflow-hidden bg-black",
+          "overflow-hidden bg-surface",
           compact ? "rounded-xl" : ""
         )}
       >
@@ -50,7 +50,7 @@ export function ProjectDetailCard({
         />
       </div>
       {!compact && (
-        <p className="px-6 py-4 font-sans text-sm text-[#9F956C] transition-colors group-hover:text-white">
+        <p className="px-6 py-4 font-sans text-sm text-[#9B4B35] transition-colors group-hover:text-foreground">
           View Live Site
         </p>
       )}

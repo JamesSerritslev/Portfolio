@@ -18,13 +18,13 @@ export function SendMessageButton({ state }: SendMessageButtonProps) {
       type="submit"
       disabled={isBusy}
       className={cn(
-        "bubble-btn font-medium",
+        "bubble-btn",
         state === "bubble" && "bubble-btn--clicked",
         state === "submitting" && "bubble-btn--sending",
       )}
       aria-busy={state === "submitting"}
     >
-      Send message
+      <span className="bubble-btn__label font-medium text-gold">Send message</span>
     </button>
   );
 }

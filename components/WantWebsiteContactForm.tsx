@@ -25,7 +25,7 @@ const LOADER_DISPLAY_MS = 4000;
 const DISMISS_SCROLL_OFFSET_PX = -30;
 
 const inputClassName =
-  "w-full min-w-0 max-w-full box-border rounded-xl border-2 border-[#9F956C]/25 bg-black px-4 py-3 font-sans text-base text-white outline-none transition-colors placeholder:text-[#666666] focus:border-[#9F956C] md:text-sm";
+  "w-full min-w-0 max-w-full box-border rounded-xl border-2 border-[#9F956C]/25 bg-surface px-4 py-3 font-sans text-base text-foreground outline-none transition-colors placeholder:text-text-placeholder focus:border-[#9F956C] md:text-sm";
 
 function prefersReducedMotion() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -182,10 +182,10 @@ export function WantWebsiteContactForm() {
       <p className="font-sans text-xs font-medium uppercase tracking-[0.2em] text-[#9F956C]">
         Get in touch
       </p>
-      <h2 className="mt-3 font-serif text-2xl text-white sm:text-3xl">
+      <h2 className="mt-3 font-serif text-2xl text-foreground sm:text-3xl">
         Tell me about your project
       </h2>
-      <p className="mt-4 max-w-2xl font-sans text-sm leading-relaxed text-[#888888] sm:text-base">
+      <p className="mt-4 max-w-2xl font-sans text-sm leading-relaxed text-text-muted sm:text-base">
         Share a few details and I will follow up to discuss scope, timeline, and
         next steps.
       </p>

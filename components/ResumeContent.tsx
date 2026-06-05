@@ -238,7 +238,7 @@ export function ResumeContent() {
       <TransitionLink
         href="/"
         prepare={prepareResumeToHomeNavigation}
-        className="inline-block min-h-[44px] py-2 font-sans text-sm text-gold transition-colors hover:text-white active:text-white"
+        className="inline-block min-h-[44px] py-2 font-sans text-sm text-gold transition-colors hover:text-foreground active:text-foreground"
       >
         ← Back
       </TransitionLink>
@@ -246,14 +246,14 @@ export function ResumeContent() {
       <header className="mt-6 border-b border-gold-border pb-6 sm:mt-8 sm:pb-8">
         {revealText(
           [resumeContact.name],
-          "font-serif text-3xl text-white sm:text-4xl md:text-5xl",
+          "font-serif text-3xl text-foreground sm:text-4xl md:text-5xl",
         )}
 
         <div className="mt-4 flex flex-col gap-2 font-sans text-sm text-gold sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-4 sm:gap-y-2">
           {revealLine(
             <a
               href={`tel:${resumeContact.phone}`}
-              className="inline-flex min-h-[44px] items-center py-2 hover:text-white active:text-white sm:min-h-0 sm:py-0"
+              className="inline-flex min-h-[44px] items-center py-2 hover:text-foreground active:text-foreground sm:min-h-0 sm:py-0"
             >
               {resumeContact.phone}
             </a>,
@@ -263,7 +263,7 @@ export function ResumeContent() {
           {revealLine(
             <a
               href={`mailto:${resumeContact.email}`}
-              className="inline-flex min-h-[44px] items-center break-all py-2 hover:text-white active:text-white sm:min-h-0 sm:py-0"
+              className="inline-flex min-h-[44px] items-center break-all py-2 hover:text-foreground active:text-foreground sm:min-h-0 sm:py-0"
             >
               {resumeContact.email}
             </a>,
@@ -282,7 +282,7 @@ export function ResumeContent() {
               href={resumeContact.linkedIn}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-[44px] items-center py-2 hover:text-white active:text-white sm:min-h-0 sm:py-0"
+              className="inline-flex min-h-[44px] items-center py-2 hover:text-foreground active:text-foreground sm:min-h-0 sm:py-0"
             >
               LinkedIn
             </a>,
@@ -294,7 +294,7 @@ export function ResumeContent() {
               href={resumeContact.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-[44px] items-center py-2 hover:text-white active:text-white sm:min-h-0 sm:py-0"
+              className="inline-flex min-h-[44px] items-center py-2 hover:text-foreground active:text-foreground sm:min-h-0 sm:py-0"
             >
               GitHub
             </a>,
@@ -307,7 +307,7 @@ export function ResumeContent() {
           <a
             href={resumeDownloadPath}
             download
-            className="mt-4 inline-block rounded-lg border-2 border-gold-border px-5 py-2.5 font-sans text-sm text-gold transition-all hover:border-gold hover:text-white active:scale-[0.98] sm:mt-6"
+            className="mt-4 inline-block rounded-lg border-2 border-gold-border px-5 py-2.5 font-sans text-sm text-gold transition-all hover:border-gold hover:text-foreground active:scale-[0.98] sm:mt-6"
           >
             Download .docx
           </a>,
@@ -317,7 +317,7 @@ export function ResumeContent() {
       <ResumeSection title="Professional Summary" revealText={revealText}>
         {revealText(
           [resumeSummary],
-          "break-words font-sans text-base leading-relaxed text-white sm:text-lg",
+          "break-words font-sans text-base leading-relaxed text-foreground sm:text-lg",
         )}
       </ResumeSection>
 
@@ -330,12 +330,12 @@ export function ResumeContent() {
                   href={project.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-serif text-lg text-white transition-colors hover:text-gold active:text-gold sm:text-xl"
+                  className="font-serif text-lg text-foreground transition-colors hover:text-gold active:text-gold sm:text-xl"
                 >
                   {project.title}
                 </a>
               ) : (
-                <span className="font-serif text-lg text-white sm:text-xl">
+                <span className="font-serif text-lg text-foreground sm:text-xl">
                   {project.title}
                 </span>
               ),
@@ -358,7 +358,7 @@ export function ResumeContent() {
           <article key={job.title} className="mb-8 last:mb-0">
             {revealText(
               [job.title],
-              "font-serif text-lg text-white sm:text-xl",
+              "font-serif text-lg text-foreground sm:text-xl",
             )}
             {revealLine(
               <p className="mt-1 font-sans text-sm leading-relaxed text-gold">
@@ -369,7 +369,7 @@ export function ResumeContent() {
                       href={company.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="hover:text-white active:text-white"
+                      className="hover:text-foreground active:text-foreground"
                     >
                       {company.name}
                     </a>
@@ -391,7 +391,7 @@ export function ResumeContent() {
       <ResumeSection title="Education" revealText={revealText}>
         {revealText(
           [resumeEducation.degree],
-          "font-serif text-lg text-white sm:text-xl",
+          "font-serif text-lg text-foreground sm:text-xl",
         )}
         {revealText(
           [`${resumeEducation.school} · ${resumeEducation.year}`],
@@ -399,7 +399,7 @@ export function ResumeContent() {
         )}
         {revealLine(
           <p className="mt-3 break-words font-sans text-sm leading-relaxed text-text-muted">
-            <span className="text-white">Relevant Coursework: </span>
+            <span className="text-foreground">Relevant Coursework: </span>
             {resumeEducation.coursework}
           </p>,
         )}

@@ -20,10 +20,10 @@ export default function WantWebsitePage() {
     >
       <ProjectInnerMobileTopBar />
       <section className="relative min-w-0 md:mt-8">
-        <h1 className="font-serif text-3xl text-white sm:text-4xl md:text-5xl">
+        <h1 className="font-serif text-3xl text-foreground sm:text-4xl md:text-5xl">
           {WANT_WEBSITE_CARD.title}
         </h1>
-        <p className="mt-4 max-w-2xl font-sans text-base leading-relaxed text-[#888888] sm:text-lg">
+        <p className="mt-4 max-w-2xl font-sans text-base leading-relaxed text-text-muted sm:text-lg">
           {WANT_WEBSITE_CARD.shortDescription}
         </p>
       </section>
@@ -38,10 +38,10 @@ export default function WantWebsitePage() {
                 : undefined
             }
           >
-            <h2 className="font-serif text-2xl text-white sm:text-3xl">
+            <h2 className="font-serif text-2xl text-foreground sm:text-3xl">
               {section.title}
             </h2>
-            <p className="mt-4 font-sans text-base leading-relaxed text-white sm:text-lg">
+            <p className="mt-4 font-sans text-base leading-relaxed text-foreground sm:text-lg">
               {section.body}
             </p>
           </section>

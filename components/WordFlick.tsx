@@ -151,7 +151,7 @@ export function WordFlick() {
 
   return (
     <div className={cn(!skipEntrance && "animate-fade-in")}>
-      <h1 className="relative mb-4 font-serif text-4xl leading-[1.05] text-white sm:text-5xl md:text-6xl lg:text-7xl">
+      <h1 className="relative mb-4 font-serif text-4xl leading-[1.05] text-foreground sm:text-5xl md:text-6xl lg:text-7xl">
         <span className="invisible block whitespace-pre-line select-none" aria-hidden="true">
           {NAME}
         </span>
@@ -162,7 +162,7 @@ export function WordFlick() {
       </h1>
       <p
         aria-live="polite"
-        className="min-h-[2.5rem] max-w-xl font-sans text-sm leading-relaxed text-[#888888] sm:min-h-[3rem] sm:text-base md:max-w-2xl"
+        className="min-h-[2.5rem] max-w-xl font-sans text-sm leading-relaxed text-text-muted sm:min-h-[3rem] sm:text-base md:max-w-2xl"
       >
         {text}
         {cursorOn === "phrase" && <span className="animate-pulse">|</span>}

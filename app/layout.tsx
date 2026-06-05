@@ -58,7 +58,7 @@ export default function RootLayout({
       lang="en"
       className={cn(dmSans.variable, dmSerif.variable, "w-full overflow-x-clip")}
     >
-      <body className="min-h-screen w-full max-w-[100vw] overflow-x-clip bg-black font-sans text-white antialiased">
+      <body className="min-h-screen w-full max-w-[100vw] overflow-x-clip bg-background font-sans text-foreground antialiased">
         <HomeScrollGuard />
         <PageTransition>{children}</PageTransition>
       </body>
