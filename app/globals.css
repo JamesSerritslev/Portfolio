@@ -130,6 +130,13 @@ html.skip-home-entrance:not(.nav-enter-home) [data-home-page] {
     visibility 0.28s;
 }
 
+.projects-download-hover__label {
+  margin: 0;
+  max-width: 14rem;
+  text-align: right;
+  line-height: 1.35;
+}
+
 .projects-download-hover:hover .projects-download-hover__panel,
 .projects-download-hover:focus-within .projects-download-hover__panel {
   opacity: 1;

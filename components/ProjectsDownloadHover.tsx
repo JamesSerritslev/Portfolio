@@ -11,6 +11,9 @@ export function ProjectsDownloadHover() {
     >
       <div className="projects-download-hover__zone">
         <div className="projects-download-hover__panel" role="menu">
+          <p className="projects-download-hover__label font-sans text-[10px] font-medium uppercase tracking-[0.14em] text-gold">
+            Hidden TODO Project download experiment
+          </p>
           {projectsAppDownloads.map((download) => (
             <a
               key={download.href}
