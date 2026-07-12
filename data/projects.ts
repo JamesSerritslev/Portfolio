@@ -79,7 +79,6 @@ export const projects: Project[] = [
     slug: "standing-sun-wines",
     title: "Standing Sun Wines",
     date: "May 2026",
-    inProgress: true,
     liveUrl: "https://standingsunwines.com",
     shortDescription:
       "Next.js + Sanity rebuild for a Santa Ynez Valley winery — content-managed marketing pages, events, and lead capture.",
