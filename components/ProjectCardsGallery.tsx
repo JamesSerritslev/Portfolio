@@ -18,12 +18,13 @@ import { useNavigationStore } from "@/store/navigationStore";
 import { usePathname } from "next/navigation";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
-/** Staggered positions: BandScope → Analogue Room → Standing Sun → Want a Website. */
+/** Staggered positions: BandScope → Analogue Room → Standing Sun → To Do List → Want a Website. */
 const GALLERY_LAYOUTS = [
   "md:absolute md:left-[2%] md:top-[6%] md:z-10 md:-rotate-[13deg]",
-  "md:absolute md:left-[22%] md:top-[12%] md:z-20 md:-rotate-[4deg]",
-  "md:absolute md:left-[42%] md:top-[4%] md:z-30 md:rotate-[8deg]",
-  "md:absolute md:left-[58%] md:top-0 md:z-40 md:rotate-[13deg]",
+  "md:absolute md:left-[18%] md:top-[12%] md:z-20 md:-rotate-[4deg]",
+  "md:absolute md:left-[34%] md:top-[4%] md:z-30 md:rotate-[8deg]",
+  "md:absolute md:left-[50%] md:top-[10%] md:z-40 md:rotate-[2deg]",
+  "md:absolute md:left-[66%] md:top-0 md:z-50 md:rotate-[13deg]",
 ] as const;
 
 /** Wait after load before cards arc in (ms). */

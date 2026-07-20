@@ -96,67 +96,6 @@ html.skip-home-entrance:not(.nav-enter-home) [data-home-page] {
   top: calc(3rem + env(safe-area-inset-top, 0px));
 }
 
-/* Home — hidden top-right hover zone reveals app download links (desktop) */
-.projects-download-hover {
-  top: 0;
-  right: 0;
-  padding:
-    max(1rem, env(safe-area-inset-top))
-    max(1rem, env(safe-area-inset-right))
-    12rem
-    10rem;
-  pointer-events: auto;
-}
-
-.projects-download-hover__zone {
-  position: relative;
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-start;
-}
-
-.projects-download-hover__panel {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.5rem;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-6px) scale(0.98);
-  pointer-events: none;
-  transition:
-    opacity 0.28s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
-    visibility 0.28s;
-}
-
-.projects-download-hover__label {
-  margin: 0;
-  max-width: 14rem;
-  text-align: right;
-  line-height: 1.35;
-}
-
-.projects-download-hover:hover .projects-download-hover__panel,
-.projects-download-hover:focus-within .projects-download-hover__panel {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0) scale(1);
-  pointer-events: auto;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .projects-download-hover__panel {
-    transition: opacity 0.15s ease, visibility 0.15s;
-    transform: none;
-  }
-
-  .projects-download-hover:hover .projects-download-hover__panel,
-  .projects-download-hover:focus-within .projects-download-hover__panel {
-    transform: none;
-  }
-}
-
 /* ── Page transitions (home ↔ project, resume → home; not home → resume) ── */
 
 html:has([data-project-page]) {

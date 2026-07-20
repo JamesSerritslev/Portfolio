@@ -4,6 +4,12 @@ export const PROJECT_IMAGE = {
   height: 1864,
 } as const;
 
+export interface ProjectDetailSection {
+  title: string;
+  paragraphs?: readonly string[];
+  bullets?: readonly string[];
+}
+
 export interface Project {
   slug: string;
   title: string;
@@ -13,6 +19,16 @@ export interface Project {
   stack: { category: string; items: string[] }[];
   imageUrl: string;
   liveUrl: string;
+  liveUrlLabel?: string;
+  /** GitHub releases page opened after download instructions modal. */
+  releasesUrl?: string;
+  downloadLabel?: string;
+  /** When false, hides the text link beside the project date. */
+  showExternalLink?: boolean;
+  detailLinkLabel?: string;
+  sections?: readonly ProjectDetailSection[];
+  highlights?: readonly string[];
+  metaLine?: string;
   accentColor?: string;
   /** Shown on the project detail page while the site is still being built. */
   inProgress?: boolean;
@@ -100,6 +116,84 @@ export const projects: Project[] = [
       { category: "Tooling", items: ["Sharp", "Vercel", "Git"] },
     ],
     imageUrl: "/images/standing-sun-wines.png",
+  },
+  {
+    slug: "projects-app",
+    title: "To Do List",
+    date: "2026",
+    liveUrl: "https://github.com/JamesSerritslev/ToDoList",
+    releasesUrl: "https://github.com/JamesSerritslev/ToDoList/releases",
+    downloadLabel: "Download",
+    showExternalLink: false,
+    shortDescription:
+      "Personal productivity desktop app I built to keep coding work organized without relying on the cloud. Each project gets its own task list and scratchpad-style notes, stored in a local SQLite database so data stays on your machine.",
+    fullDescription:
+      "Projects is a local-first desktop application for developers who want a lightweight, focused way to manage side projects and in-progress work. Instead of a generic todo app, it is shaped around how I actually work: one workspace per project, a clear split between active and completed tasks, and a notes area for ideas that do not belong on the task list. Everything runs offline. Tasks, notes, and project metadata live in a SQLite database on disk. No accounts, no sync, no network calls.",
+    sections: [
+      {
+        title: "What it does",
+        bullets: [
+          "Project hub: create and browse projects, sorted by most recently opened",
+          "Task management: add, edit, complete, undo, delete, and drag-reorder tasks",
+          "Project notes: separate notes stream per project, distinct from tasks",
+          "Cursor integration: map projects to local folders and open them in Cursor with one click",
+          "Interactive guide: a polished onboarding tour that requires the user to perform each action before advancing",
+          "In-app README: built-in documentation covering architecture, data storage, and build instructions",
+        ],
+      },
+      {
+        title: "Technical highlights",
+        bullets: [
+          "Electron 35 with a frameless, platform-aware window (hidden title bar on Windows/macOS)",
+          "better-sqlite3 with WAL journaling and foreign-key constraints",
+          "Secure renderer: context isolation, strict Content Security Policy, no Node integration in the UI",
+          "Vanilla JS / HTML / CSS: custom animations, modal system, and tour logic without a frontend framework",
+          "Cross-platform packaging: portable .exe, macOS .dmg, Linux .AppImage and .deb",
+          "CI/CD: GitHub Actions matrix build across Windows, macOS, and Linux",
+        ],
+      },
+      {
+        title: "Why I built it",
+        paragraphs: [
+          "I wanted a todo tool that matched my workflow as a developer: fast to open, keyboard-friendly, tied to real project folders, and completely under my control. Building it also let me practice the full stack of a small desktop product — database schema, IPC bridge, packaging, and UX polish — in a focused, shippable scope.",
+        ],
+      },
+    ],
+    highlights: [
+      "Local-first SQLite storage: your data never leaves your machine",
+      "Project-based task lists with done / to-do sections",
+      "Drag-and-drop task reordering",
+      "Inline editing for tasks and notes",
+      "One-click Open in Cursor for linked project folders",
+      "Interactive hands-on onboarding tour with spotlight UI",
+      "Cross-platform desktop builds (Windows, macOS, Linux)",
+      "Automated release builds via GitHub Actions",
+    ],
+    metaLine:
+      "Built in a single focused session using Cursor for rapid iteration, with follow-up passes on the interactive tour, animations, and cross-platform packaging.",
+    stack: [
+      {
+        category: "Desktop",
+        items: ["Electron 35", "electron-builder"],
+      },
+      {
+        category: "Frontend",
+        items: ["Vanilla JavaScript", "HTML", "CSS"],
+      },
+      {
+        category: "Data",
+        items: ["better-sqlite3 (SQLite + WAL)"],
+      },
+      {
+        category: "Security",
+        items: ["contextBridge IPC", "CSP", "no network"],
+      },
+      {
+        category: "CI/CD",
+        items: ["GitHub Actions (Windows / macOS / Linux)"],
+      },
+    ],
+    imageUrl: "/images/projects-app.png",
   },
 ];
 
