@@ -24,6 +24,16 @@ const HUMAN_KEY = "recruiter-chat-human";
 
 type ChatMode = "center" | "dock" | "min";
 
+const MOBILE_CHAT_QUERY = "(max-width: 767px)";
+
+function isMobileChat() {
+  return window.matchMedia(MOBILE_CHAT_QUERY).matches;
+}
+
+function openedChatMode(): ChatMode {
+  return isMobileChat() ? "center" : "dock";
+}
+
 type TurnstileApi = {
   render: (
     element: HTMLElement,
@@ -448,10 +458,19 @@ export function RecruiterChat() {
   }, []);
 
   useEffect(() => {
+    const media = window.matchMedia(MOBILE_CHAT_QUERY);
+    const onChange = () => {
+      if (media.matches && modeRef.current === "dock") morphRef.current("center");
+    };
+    media.addEventListener("change", onChange);
+    return () => media.removeEventListener("change", onChange);
+  }, []);
+
+  useEffect(() => {
     if (!hydrated) return;
     const timer = window.setTimeout(() => {
       if (skipIntro.current || modeRef.current !== "min") return;
-      morphRef.current("dock");
+      morphRef.current(openedChatMode());
     }, 5000);
     return () => window.clearTimeout(timer);
   }, [hydrated]);
@@ -522,7 +541,9 @@ export function RecruiterChat() {
           continue;
         }
         seenTools.current.add(id);
-        if (modeRef.current === "center") morphRef.current("dock");
+        if (modeRef.current === "center") {
+          morphRef.current(isMobileChat() ? "min" : "dock");
+        }
         const prepare = prepareChatPageTransition(pathname, path);
         if (prepare) {
           scheduleTransitionNavigation(path, prepare, (href) => {
@@ -566,7 +587,7 @@ export function RecruiterChat() {
       <button
         ref={launcherRef}
         type="button"
-        onClick={() => morph("dock")}
+        onClick={() => morph(openedChatMode())}
         aria-label="Open chat about James"
         tabIndex={mode === "min" ? 0 : -1}
         aria-hidden={mode !== "min"}
@@ -621,6 +642,7 @@ export function RecruiterChat() {
             ) : null}
           </div>
           <div className="flex shrink-0 items-center gap-1">
+            <div className="hidden md:contents">
             {mode === "dock" ? (
               <IconButton label="Enlarge chat" onClick={() => morph("center")}>
                 <svg viewBox="0 0 16 16" className="h-4 w-4" aria-hidden>
@@ -656,6 +678,7 @@ export function RecruiterChat() {
                 </svg>
               </IconButton>
             )}
+            </div>
             <IconButton
               label="Minimize chat"
               onClick={() => {
@@ -749,7 +772,7 @@ export function RecruiterChat() {
                 void submit(draft);
               }
             }}
-            className="w-full resize-none rounded-xl border border-[#9F956C]/40 bg-background px-3 py-2 font-sans text-sm text-foreground outline-none placeholder:text-text-placeholder focus:border-gold"
+            className="w-full resize-none rounded-xl border border-[#9F956C]/40 bg-background px-3 py-2 font-sans text-base text-foreground outline-none placeholder:text-text-placeholder focus:border-gold md:text-sm"
           />
           <div className="mt-2 flex items-center justify-between gap-3">
             <span className="font-sans text-[10px] text-text-muted">{draft.length}/500</span>
