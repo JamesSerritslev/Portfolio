@@ -661,7 +661,7 @@ export function RecruiterChat() {
 
         <div ref={listRef} className="min-h-0 flex-1 space-y-3 overflow-y-auto px-4 py-4 sm:px-5">
           <p className="font-sans text-sm leading-relaxed text-text-muted">
-            Ask about James's work, or paste a job description and I'll compare it to his background.
+            Ask about James’s work, or paste a job description and I’ll compare it to his background.
           </p>
           <div className="flex flex-wrap gap-2">
             {STARTERS.map((starter) => (
