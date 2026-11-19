@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { DM_Sans, DM_Serif_Display } from "next/font/google";
 import { HomeScrollGuard } from "@/components/HomeScrollGuard";
 import { PageTransition } from "@/components/PageTransition";
+import { RecruiterChat } from "@/components/RecruiterChat";
 import "./globals.css";
 import { getMetadataBase } from "@/lib/site";
 import { cn } from "@/lib/utils";
@@ -61,6 +62,7 @@ export default function RootLayout({
       <body className="min-h-screen w-full max-w-[100vw] overflow-x-clip bg-background font-sans text-foreground antialiased">
         <HomeScrollGuard />
         <PageTransition>{children}</PageTransition>
+        <RecruiterChat />
       </body>
     </html>
   );

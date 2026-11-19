@@ -31,9 +31,9 @@ export function ProjectScrollNav({
   return (
     <section
       aria-label={`Next project: ${nextProject.title}`}
-      className="mt-16 border-t border-[#9F956C]/15 pt-12 sm:mt-20 sm:pt-16"
+      className="mt-16 border-t border-[#9F956C]/40 pt-12 sm:mt-20 sm:pt-16"
     >
-      <p className="font-sans text-xs font-medium uppercase tracking-[0.2em] text-[#9F956C]">
+      <p className="font-sans text-xs font-medium uppercase tracking-[0.2em] text-gold">
         Next Project
       </p>
       <button
@@ -41,7 +41,7 @@ export function ProjectScrollNav({
         onClick={navigateToNext}
         className="group mt-6 w-full text-left"
       >
-        <span className="font-serif text-2xl text-foreground transition-colors duration-300 group-hover:text-[#9F956C] sm:text-3xl">
+        <span className="font-serif text-2xl text-foreground transition-colors duration-300 group-hover:text-gold sm:text-3xl">
           {nextProject.title}
         </span>
         <span className="mt-2 block font-sans text-sm text-text-muted transition-colors duration-300 group-hover:text-foreground">

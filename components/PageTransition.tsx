@@ -14,7 +14,7 @@ import {
 import { usePathname } from "next/navigation";
 import { useLayoutEffect, useRef } from "react";
 
-const ENTER_DURATION_MS = 580;
+const ENTER_DURATION_MS = 660;
 
 function isProjectLikePage(pathname: string) {
   return pathname.startsWith("/projects/") || pathname === "/want-a-website";
@@ -36,18 +36,34 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
 
     if (isProjectLikePage(pathname)) {
       resetMobileProjectPageScroll();
-      if (transition === "home-to-project" || transition === "project-to-project") {
+      if (
+        transition === "home-to-project" ||
+        transition === "project-to-project" ||
+        transition === "resume-to-project"
+      ) {
         window.scrollTo({ top: 0, left: 0, behavior: "instant" });
       }
     }
 
+    if (
+      pathname === "/resume" &&
+      (transition === "home-to-resume" || transition === "project-to-resume")
+    ) {
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    }
+
     const shouldEnterProject =
-      (transition === "home-to-project" || transition === "project-to-project") &&
+      (transition === "home-to-project" ||
+        transition === "project-to-project" ||
+        transition === "resume-to-project") &&
       isProjectLikePage(pathname);
+    const shouldEnterResume =
+      (transition === "home-to-resume" || transition === "project-to-resume") &&
+      pathname === "/resume";
     const shouldEnterHome =
       (transition === "project-to-home" || transition === "resume-to-home") &&
       pathname === "/";
-    const isTransitioning = shouldEnterProject || shouldEnterHome;
+    const isTransitioning = shouldEnterProject || shouldEnterHome || shouldEnterResume;
 
     // Scrollable pages keep the native scrollbar — release any home exit lock.
     if (pathname !== "/") {

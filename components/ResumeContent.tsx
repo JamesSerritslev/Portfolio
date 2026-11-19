@@ -8,9 +8,9 @@ import { RevealLine, RevealText } from "@/components/RevealText";
 import { prepareResumeToHomeNavigation } from "@/lib/navigation-transition";
 import {
   resumeContact,
-  resumeDownloadPath,
   resumeEducation,
   resumeExperience,
+  resumeNote,
   resumeProjects,
   resumeSkills,
   resumeSummary,
@@ -244,6 +244,13 @@ export function ResumeContent() {
       </TransitionLink>
 
       <header className="mt-6 border-b border-gold-border pb-6 sm:mt-8 sm:pb-8">
+        <div className="flex items-start gap-4 sm:gap-6">
+          <img
+            src="/images/james-serritslev.jpg"
+            alt="James Serritslev"
+            className="mt-1 h-24 w-24 shrink-0 rounded-full object-cover object-[center_22%] ring-1 ring-[#9F956C]/50 sm:h-32 sm:w-32"
+          />
+          <div className="min-w-0 flex-1">
         {revealText(
           [resumeContact.name],
           "font-serif text-3xl text-foreground sm:text-4xl md:text-5xl",
@@ -301,17 +308,43 @@ export function ResumeContent() {
             "inline-block sm:inline-block",
             4,
           )}
+          {revealLine(
+            <a
+              href={resumeContact.website}
+              className="inline-flex min-h-[44px] items-center py-2 hover:text-foreground active:text-foreground sm:min-h-0 sm:py-0"
+            >
+              {resumeContact.websiteLabel}
+            </a>,
+            "inline-block sm:inline-block",
+            5,
+          )}
+          {revealLine(
+            <a
+              href={resumeContact.bandScope}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-[44px] items-center py-2 hover:text-foreground active:text-foreground sm:min-h-0 sm:py-0"
+            >
+              {resumeContact.bandScopeLabel}
+            </a>,
+            "inline-block sm:inline-block",
+            6,
+          )}
+          {revealLine(
+            <a
+              href={resumeContact.corWebSolutions}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-[44px] items-center py-2 hover:text-foreground active:text-foreground sm:min-h-0 sm:py-0"
+            >
+              {resumeContact.corWebSolutionsLabel}
+            </a>,
+            "inline-block sm:inline-block",
+            7,
+          )}
         </div>
-
-        {revealLine(
-          <a
-            href={resumeDownloadPath}
-            download
-            className="mt-4 inline-block rounded-lg border-2 border-gold-border px-5 py-2.5 font-sans text-sm text-gold transition-all hover:border-gold hover:text-foreground active:scale-[0.98] sm:mt-6"
-          >
-            Download .docx
-          </a>,
-        )}
+          </div>
+        </div>
       </header>
 
       <ResumeSection title="Professional Summary" revealText={revealText}>
@@ -360,6 +393,12 @@ export function ResumeContent() {
               [job.title],
               "font-serif text-lg text-foreground sm:text-xl",
             )}
+            {job.summary
+              ? revealText(
+                  [job.summary],
+                  "mt-1 font-sans text-sm leading-relaxed text-text-muted",
+                )
+              : null}
             {revealLine(
               <p className="mt-1 font-sans text-sm leading-relaxed text-gold">
                 {job.companies.map((company, index) => (
@@ -376,7 +415,8 @@ export function ResumeContent() {
                   </span>
                 ))}{" "}
                 <span className="text-text-muted">
-                  ({job.location}) · {job.period}
+                  {job.location ? `(${job.location}) · ` : ""}
+                  {job.period}
                 </span>
               </p>,
             )}
@@ -420,6 +460,13 @@ export function ResumeContent() {
             </div>
           ))}
         </dl>
+      </ResumeSection>
+
+      <ResumeSection title="Note" revealText={revealText}>
+        {revealText(
+          [resumeNote],
+          "break-words font-sans text-base leading-relaxed text-foreground sm:text-lg",
+        )}
       </ResumeSection>
 
       {animate && !showLandingSpacer ? (

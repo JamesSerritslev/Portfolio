@@ -49,7 +49,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         <h1 className="font-serif text-3xl text-foreground sm:text-4xl md:text-5xl">
           {project.title}
         </h1>
-        <div className="mt-3 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 font-sans text-sm text-[#9F956C] sm:mt-4 md:justify-start md:gap-x-6">
+        <div className="mt-3 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 font-sans text-sm text-gold sm:mt-4 md:justify-start md:gap-x-6">
           <time dateTime={project.date} className="leading-none">
             {project.date}
           </time>
@@ -129,7 +129,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               {section.bullets.map((item) => (
                 <li key={item} className="flex gap-3">
                   <span
-                    className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#9F956C]"
+                    className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold"
                     aria-hidden
                   />
                   <span>{item}</span>
@@ -142,14 +142,14 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
       {project.highlights ? (
         <section className="mt-8 sm:mt-12">
-          <p className="font-sans text-xs font-medium uppercase tracking-[0.2em] text-[#9F956C]">
+          <p className="font-sans text-xs font-medium uppercase tracking-[0.2em] text-gold">
             Highlights
           </p>
           <ul className="mt-4 space-y-3 font-sans text-base leading-relaxed text-foreground sm:mt-6 sm:text-lg">
             {project.highlights.map((item) => (
               <li key={item} className="flex gap-3">
                 <span
-                  className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#9F956C]"
+                  className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold"
                   aria-hidden
                 />
                 <span>{item}</span>
@@ -160,7 +160,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       ) : null}
 
       <section className="mt-8 sm:mt-12">
-        <p className="font-sans text-xs font-medium uppercase tracking-[0.2em] text-[#9F956C]">
+        <p className="font-sans text-xs font-medium uppercase tracking-[0.2em] text-gold">
           Stack
         </p>
         <div className="mt-4 grid gap-6 sm:mt-6 sm:grid-cols-2 sm:gap-8">

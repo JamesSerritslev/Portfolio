@@ -6,6 +6,7 @@ const EXIT_PROJECT = "nav-exit-project";
 const EXIT_RESUME = "nav-exit-resume";
 const ENTER_HOME = "nav-enter-home";
 const ENTER_PROJECT = "nav-enter-project";
+const ENTER_RESUME = "nav-enter-resume";
 const NAV_SCROLL_LOCK = "nav-scroll-lock";
 const PENDING_TRANSITION_KEY = "portfolio-pending-transition";
 
@@ -91,7 +92,7 @@ export function clearNavScrollLock() {
 
 export function clearEnterTransitionClasses() {
   if (typeof document === "undefined") return;
-  document.documentElement.classList.remove(ENTER_HOME, ENTER_PROJECT);
+  document.documentElement.classList.remove(ENTER_HOME, ENTER_PROJECT, ENTER_RESUME);
   clearNavScrollLock();
 }
 
@@ -122,12 +123,36 @@ export function prepareProjectToHomeNavigation() {
   document.documentElement.classList.add(EXIT_PROJECT);
 }
 
+/** Home → resume */
+export function prepareHomeToResumeNavigation() {
+  if (prefersReducedMotion()) return;
+  setPendingTransition("home-to-resume");
+  lockNavScroll();
+  document.documentElement.classList.add(EXIT_HOME);
+}
+
 /** Project detail → next project detail */
 export function prepareProjectToProjectNavigation() {
   if (prefersReducedMotion()) return;
   setPendingTransition("project-to-project");
   lockNavScroll();
   document.documentElement.classList.add(EXIT_PROJECT);
+}
+
+/** Project or service page → resume */
+export function prepareProjectToResumeNavigation() {
+  if (prefersReducedMotion()) return;
+  setPendingTransition("project-to-resume");
+  lockNavScroll();
+  document.documentElement.classList.add(EXIT_PROJECT);
+}
+
+/** Resume → project detail */
+export function prepareResumeToProjectNavigation() {
+  if (prefersReducedMotion()) return;
+  setPendingTransition("resume-to-project");
+  lockNavScroll();
+  document.documentElement.classList.add(EXIT_RESUME);
 }
 
 /** Resume → home (skips card arc, plays page transition) */
@@ -143,11 +168,26 @@ export function applyEnterTransition(type: PageTransitionType) {
   const html = document.documentElement;
   clearExitTransitionClasses();
 
-  if (type === "home-to-project" || type === "project-to-project") {
+  if (type === "home-to-project" || type === "project-to-project" || type === "resume-to-project") {
     html.classList.add(ENTER_PROJECT);
+  } else if (type === "home-to-resume" || type === "project-to-resume") {
+    html.classList.add(ENTER_RESUME);
   } else if (type === "project-to-home" || type === "resume-to-home") {
     html.classList.add(ENTER_HOME);
   }
+}
+
+/** Exit the current page, then enter the chat's destination. */
+export function prepareChatPageTransition(from: string, to: string): (() => void) | null {
+  if (from === to) return null;
+  const fromProject = from.startsWith("/projects/") || from === "/want-a-website";
+  const toProject = to.startsWith("/projects/");
+  if (from === "/" && toProject) return prepareHomeToProjectNavigation;
+  if (from === "/" && to === "/resume") return prepareHomeToResumeNavigation;
+  if (fromProject && toProject) return prepareProjectToProjectNavigation;
+  if (fromProject && to === "/resume") return prepareProjectToResumeNavigation;
+  if (from === "/resume" && toProject) return prepareResumeToProjectNavigation;
+  return null;
 }
 
 export function readPendingTransition(): PageTransitionType {
@@ -159,9 +199,12 @@ export function readPendingTransition(): PageTransitionType {
     const stored = sessionStorage.getItem(PENDING_TRANSITION_KEY);
     if (
       stored === "home-to-project" ||
+      stored === "home-to-resume" ||
       stored === "project-to-home" ||
       stored === "project-to-project" ||
-      stored === "resume-to-home"
+      stored === "project-to-resume" ||
+      stored === "resume-to-home" ||
+      stored === "resume-to-project"
     ) {
       storageValue = stored;
     }

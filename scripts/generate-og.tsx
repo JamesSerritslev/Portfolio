@@ -11,7 +11,7 @@ const image = new ImageResponse(
   (
     <div
       style={{
-        background: "#000000",
+        background: "#F6F3EC",
         width: "100%",
         height: "100%",
         display: "flex",
@@ -23,7 +23,7 @@ const image = new ImageResponse(
         style={{
           fontSize: 320,
           fontFamily: "Georgia, serif",
-          color: "#9F956C",
+          color: "#6E6240",
           lineHeight: 1,
         }}
       >

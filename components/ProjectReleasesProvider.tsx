@@ -70,7 +70,7 @@ export function ProjectReleasesProvider({
         <div className="project-releases-modal fixed inset-0 z-50 flex items-end justify-center p-4 sm:items-center sm:p-6">
           <button
             type="button"
-            className="project-releases-modal__backdrop absolute inset-0 bg-black/70 backdrop-blur-sm"
+            className="project-releases-modal__backdrop absolute inset-0 bg-[#1F1C16]/40 backdrop-blur-sm"
             aria-label="Close download instructions"
             onClick={closeModal}
           />
@@ -78,7 +78,7 @@ export function ProjectReleasesProvider({
             role="dialog"
             aria-modal="true"
             aria-labelledby={titleId}
-            className="project-releases-modal__panel relative z-10 w-full max-w-lg rounded-2xl border border-[#9F956C]/25 bg-surface p-6 shadow-[0_24px_64px_rgba(0,0,0,0.55)] sm:p-8"
+            className="project-releases-modal__panel relative z-10 w-full max-w-lg rounded-2xl border border-[#9F956C]/40 bg-surface-elevated p-6 shadow-[0_24px_48px_rgba(31,28,22,0.16)] sm:p-8"
           >
             <button
               type="button"
@@ -89,7 +89,7 @@ export function ProjectReleasesProvider({
               <span aria-hidden>×</span>
             </button>
 
-            <p className="font-sans text-xs font-medium uppercase tracking-[0.2em] text-[#9F956C]">
+            <p className="font-sans text-xs font-medium uppercase tracking-[0.2em] text-gold">
               Download
             </p>
             <h2

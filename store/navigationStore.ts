@@ -2,9 +2,12 @@ import { create } from "zustand";
 
 export type PageTransitionType =
   | "home-to-project"
+  | "home-to-resume"
   | "project-to-home"
   | "project-to-project"
+  | "project-to-resume"
   | "resume-to-home"
+  | "resume-to-project"
   | null;
 
 interface NavigationState {

@@ -93,10 +93,10 @@ export function ProjectCard({
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
         className={cn(
-          "group pointer-events-auto mx-auto block w-full max-w-[22rem] overflow-hidden rounded-2xl bg-surface-elevated p-1 shadow-[0_4px_24px_rgba(0,0,0,0.45)] md:mx-0 md:w-[17rem] md:max-w-none lg:w-[19rem] xl:w-[21rem]",
+          "group pointer-events-auto mx-auto block w-full max-w-[22rem] overflow-hidden rounded-2xl bg-surface-elevated p-1 shadow-[0_10px_28px_rgba(31,28,22,0.1)] md:mx-0 md:w-[17rem] md:max-w-none lg:w-[19rem] xl:w-[21rem]",
           cardHoverStyles,
           "hover:scale-[1.02] active:scale-[0.99] md:active:scale-100",
-          isElevated && "!z-50",
+          isElevated && "!z-[60]",
           layoutClassName
         )}
       >
@@ -109,11 +109,11 @@ export function ProjectCard({
         <div className="space-y-1 px-1.5 pb-1.5 pt-1.5">
           <time
             dateTime={project.date}
-            className="font-sans text-[10px] tracking-wide text-[#9F956C] md:text-xs"
+            className="font-sans text-[10px] tracking-wide text-gold md:text-xs"
           >
             {project.date}
           </time>
-          <h2 className="font-serif text-lg text-foreground transition-colors duration-300 group-hover:text-[#9F956C] md:text-xl">
+          <h2 className="font-serif text-lg text-foreground transition-colors duration-300 group-hover:text-gold md:text-xl">
             {project.title}
           </h2>
           <p className="line-clamp-2 font-sans text-[11px] leading-relaxed text-text-muted md:text-xs">
@@ -128,7 +128,7 @@ export function ProjectCard({
     <Link
       href={`/projects/${project.slug}`}
       className={cn(
-        "group flex flex-col overflow-hidden rounded-2xl bg-surface-elevated shadow-[0_4px_24px_rgba(0,0,0,0.45)] sm:flex-row",
+        "group flex flex-col overflow-hidden rounded-2xl bg-surface-elevated shadow-[0_10px_28px_rgba(31,28,22,0.1)] sm:flex-row",
         cardHoverStyles,
         "hover:scale-[1.01]"
       )}
@@ -146,11 +146,11 @@ export function ProjectCard({
       <div className="flex flex-col justify-center gap-3 p-6 sm:w-1/2 sm:p-8">
         <time
           dateTime={project.date}
-          className="font-sans text-xs tracking-wide text-[#9F956C]"
+          className="font-sans text-xs tracking-wide text-gold"
         >
           {project.date}
         </time>
-        <h2 className="font-serif text-2xl text-foreground transition-colors duration-300 group-hover:text-[#9F956C] sm:text-3xl">
+        <h2 className="font-serif text-2xl text-foreground transition-colors duration-300 group-hover:text-gold sm:text-3xl">
           {project.title}
         </h2>
         <p className="font-sans text-sm leading-relaxed text-text-muted sm:text-base">

@@ -55,10 +55,10 @@ export function WantWebsiteCard({
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       className={cn(
-        "group pointer-events-auto mx-auto block w-full max-w-[22rem] overflow-hidden rounded-2xl bg-surface-elevated p-1 shadow-[0_4px_24px_rgba(0,0,0,0.45)] md:mx-0 md:w-[17rem] md:max-w-none lg:w-[19rem] xl:w-[21rem]",
+        "group pointer-events-auto mx-auto block w-full max-w-[22rem] overflow-hidden rounded-2xl bg-surface-elevated p-1 shadow-[0_10px_28px_rgba(31,28,22,0.1)] md:mx-0 md:w-[17rem] md:max-w-none lg:w-[19rem] xl:w-[21rem]",
         cardHoverStyles,
         "hover:scale-[1.02] active:scale-[0.99] md:active:scale-100",
-        isElevated && "!z-50",
+        isElevated && "!z-[60]",
         layoutClassName,
       )}
     >
@@ -71,10 +71,10 @@ export function WantWebsiteCard({
         </div>
       </div>
       <div className="space-y-1 px-1.5 pb-1.5 pt-1.5">
-        <p className="font-sans text-[10px] tracking-wide text-[#9F956C] md:text-xs">
+        <p className="font-sans text-[10px] tracking-wide text-gold md:text-xs">
           Custom development
         </p>
-        <h2 className="font-serif text-lg text-foreground transition-colors duration-300 group-hover:text-[#9F956C] md:text-xl">
+        <h2 className="font-serif text-lg text-foreground transition-colors duration-300 group-hover:text-gold md:text-xl">
           {WANT_WEBSITE_CARD.title}
         </h2>
         <p className="line-clamp-2 font-sans text-[11px] leading-relaxed text-text-muted md:text-xs">

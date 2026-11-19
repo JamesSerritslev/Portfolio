@@ -179,7 +179,7 @@ export function WantWebsiteContactForm() {
 
   return (
     <section className="want-website-contact-form mt-12 min-w-0 max-w-full overflow-x-clip sm:mt-16">
-      <p className="font-sans text-xs font-medium uppercase tracking-[0.2em] text-[#9F956C]">
+      <p className="font-sans text-xs font-medium uppercase tracking-[0.2em] text-gold">
         Get in touch
       </p>
       <h2 className="mt-3 font-serif text-2xl text-foreground sm:text-3xl">
@@ -197,7 +197,7 @@ export function WantWebsiteContactForm() {
           noValidate
         >
           <label className="block min-w-0 sm:col-span-1">
-            <span className="mb-2 block font-sans text-xs uppercase tracking-[0.16em] text-[#9F956C]">
+            <span className="mb-2 block font-sans text-xs uppercase tracking-[0.16em] text-gold">
               Name
             </span>
             <input
@@ -211,7 +211,7 @@ export function WantWebsiteContactForm() {
           </label>
 
           <label className="block min-w-0 sm:col-span-1">
-            <span className="mb-2 block font-sans text-xs uppercase tracking-[0.16em] text-[#9F956C]">
+            <span className="mb-2 block font-sans text-xs uppercase tracking-[0.16em] text-gold">
               Phone
             </span>
             <input
@@ -225,7 +225,7 @@ export function WantWebsiteContactForm() {
           </label>
 
           <label className="block sm:col-span-2">
-            <span className="mb-2 block font-sans text-xs uppercase tracking-[0.16em] text-[#9F956C]">
+            <span className="mb-2 block font-sans text-xs uppercase tracking-[0.16em] text-gold">
               Email
             </span>
             <input
@@ -239,7 +239,7 @@ export function WantWebsiteContactForm() {
           </label>
 
           <label className="block min-w-0 sm:col-span-2">
-            <span className="mb-2 block font-sans text-xs uppercase tracking-[0.16em] text-[#9F956C]">
+            <span className="mb-2 block font-sans text-xs uppercase tracking-[0.16em] text-gold">
               Message
             </span>
             <textarea
