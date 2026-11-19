@@ -14,7 +14,7 @@ const INJECTION = [
 ];
 
 const ABOUT_JAMES =
-  /\b(james|serritslev|resume|experience|project|bandscope|analogue|standing sun|portfolio|hire|hiring|job|role|position|developer|engineer|seo|website|skill|background|built|internship|recruit|candidate|qualif)/i;
+  /\b(james|serritslev|resume|experience|project|bandscope|analogue|standing sun|cor\s*web|corweb|portfolio|hire|hiring|job|role|position|developer|engineer|seo|website|skill|background|built|internship|recruit|candidate|qualif|hobb(?:y|ies)|interest|personal|personality|hometown|bass|music|band|game|solvang|gradio|search console|ga4|business profile|lead|prospect)/i;
 
 const OFF_TOPIC = [
   /\b(joke|poem|haiku|limerick|song lyrics|recipe)\b/i,

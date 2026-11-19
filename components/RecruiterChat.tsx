@@ -58,12 +58,12 @@ function quotaCount(limit: number, remaining: number) {
 
 function quotaLabel(quota: ChatQuota | null): string {
   if (!quota) {
-    return `0 made · ${CHAT_BURST_LIMIT} left this ${CHAT_BURST_WINDOW_LABEL}\n0 made · ${CHAT_VISITOR_DAILY_LIMIT} left today\n0 made · ${CHAT_SITE_DAILY_DEFAULT} left for the site`;
+    return `0 made · ${CHAT_BURST_LIMIT} left this ${CHAT_BURST_WINDOW_LABEL}\n0 made · ${CHAT_VISITOR_DAILY_LIMIT} left today\n0 made · ${CHAT_SITE_DAILY_DEFAULT} left for the site today`;
   }
   const burst = quotaCount(quota.burstLimit, quota.burstRemaining);
   const daily = quotaCount(quota.dailyLimit, quota.dailyRemaining);
   const site = quotaCount(quota.siteLimit, quota.siteRemaining);
-  return `${burst.made} made · ${burst.left} left this ${CHAT_BURST_WINDOW_LABEL}\n${daily.made} made · ${daily.left} left today\n${site.made} made · ${site.left} left for the site`;
+  return `${burst.made} made · ${burst.left} left this ${CHAT_BURST_WINDOW_LABEL}\n${daily.made} made · ${daily.left} left today\n${site.made} made · ${site.left} left for the site today`;
 }
 
 function messageText(parts: Array<{ type: string; text?: string }>): string {
@@ -305,6 +305,7 @@ export function RecruiterChat() {
   const router = useRouter();
   const pathname = usePathname();
   const [quota, setQuota] = useState<ChatQuota | null>(null);
+  const [limitsOpen, setLimitsOpen] = useState(false);
   const transport = useMemo(
     () =>
       new DefaultChatTransport({
@@ -604,10 +605,20 @@ export function RecruiterChat() {
             <p className="font-sans text-[10px] font-medium uppercase tracking-[0.18em] text-gold">
               Portfolio assistant
             </p>
-            <h2 className="font-serif text-2xl text-foreground">Ask me about James</h2>
-            <p className="mt-1 max-w-md whitespace-pre-line font-sans text-[10px] leading-snug text-text-muted">
-              {quotaLabel(quota)}
-            </p>
+            <h2 className="font-serif text-2xl text-foreground">Ask about James</h2>
+            <button
+              type="button"
+              aria-expanded={limitsOpen}
+              onClick={() => setLimitsOpen((open) => !open)}
+              className="mt-1 rounded-full border border-[#9F956C]/45 px-2.5 py-1 font-sans text-[10px] font-medium uppercase tracking-[0.14em] text-gold transition-colors hover:border-gold hover:text-foreground"
+            >
+              API Limits
+            </button>
+            {limitsOpen ? (
+              <p className="mt-1 max-w-md whitespace-pre-line font-sans text-[10px] leading-snug text-text-muted">
+                {quotaLabel(quota)}
+              </p>
+            ) : null}
           </div>
           <div className="flex shrink-0 items-center gap-1">
             {mode === "dock" ? (
@@ -653,7 +664,13 @@ export function RecruiterChat() {
               }}
             >
               <svg viewBox="0 0 16 16" className="h-4 w-4" aria-hidden>
-                <path d="M3 8h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                <path
+                  d="M4 4l8 8M12 4l-8 8"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                />
               </svg>
             </IconButton>
           </div>

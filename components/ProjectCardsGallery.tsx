@@ -18,13 +18,16 @@ import { useNavigationStore } from "@/store/navigationStore";
 import { usePathname } from "next/navigation";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
-/** Staggered positions: BandScope → Analogue Room → Standing Sun → To Do List → Want a Website. */
+/** Staggered positions: Web Dev Lead Generator → SEO Reporting Tool → Analogue Room → Standing Sun → To Do List → BandScope → COR Web Solutions → Want a Website. */
 const GALLERY_LAYOUTS = [
-  "md:absolute md:left-[2%] md:top-[6%] md:z-10 md:-rotate-[13deg]",
-  "md:absolute md:left-[18%] md:top-[12%] md:z-20 md:-rotate-[4deg]",
-  "md:absolute md:left-[34%] md:top-[4%] md:z-30 md:rotate-[8deg]",
-  "md:absolute md:left-[50%] md:top-[10%] md:z-40 md:rotate-[2deg]",
-  "md:absolute md:left-[66%] md:top-0 md:z-50 md:rotate-[13deg]",
+  "md:absolute md:left-[0%] md:top-[8%] md:z-10 md:-rotate-[15deg]",
+  "md:absolute md:left-[9%] md:top-[13%] md:z-20 md:-rotate-[10deg]",
+  "md:absolute md:left-[18%] md:top-[4%] md:z-30 md:-rotate-[5deg]",
+  "md:absolute md:left-[28%] md:top-[12%] md:z-[35] md:rotate-[0deg]",
+  "md:absolute md:left-[37%] md:top-[5%] md:z-40 md:rotate-[4deg]",
+  "md:absolute md:left-[47%] md:top-[12%] md:z-[45] md:rotate-[8deg]",
+  "md:absolute md:left-[56%] md:top-[6%] md:z-[48] md:rotate-[11deg]",
+  "md:absolute md:left-[66%] md:top-0 md:z-50 md:rotate-[14deg]",
 ] as const;
 
 /** Wait after load before cards arc in (ms). */

@@ -2,6 +2,9 @@ export const CHAT_PATHS = [
   "/projects/bandscope",
   "/projects/analogue-room",
   "/projects/standing-sun-wines",
+  "/projects/cor-web-solutions",
+  "/projects/report",
+  "/projects/lead-generator",
   "/projects/projects-app",
   "/resume",
 ] as const;

@@ -66,6 +66,10 @@ export function ProjectDetailCard({
     );
   }
 
+  if (project.showExternalLink === false) {
+    return <div className={cardClassName}>{image}</div>;
+  }
+
   return (
     <a
       href={project.liveUrl}
