@@ -40,6 +40,7 @@ type TurnstileApi = {
     options: {
       sitekey: string;
       theme?: "light";
+      appearance?: "always" | "execute" | "interaction-only";
       callback: (token: string) => void;
       "expired-callback": () => void;
       "error-callback": () => void;
@@ -53,12 +54,6 @@ declare global {
     turnstile?: TurnstileApi;
   }
 }
-
-const STARTERS = [
-  "What has James built?",
-  "What's his experience?",
-  "Tell me about BandScope",
-] as const;
 
 function quotaCount(limit: number, remaining: number) {
   const left = Math.max(0, remaining);
@@ -138,6 +133,7 @@ function Turnstile({ onToken }: { onToken: (token: string | null) => void }) {
       widgetId = window.turnstile.render(containerRef.current, {
         sitekey: SITE_KEY,
         theme: "light",
+        appearance: "interaction-only",
         callback: (token) => onToken(token),
         "expired-callback": () => onToken(null),
         "error-callback": () => onToken(null),
@@ -559,6 +555,7 @@ export function RecruiterChat() {
   const submit = async (text: string) => {
     const value = text.trim();
     if (!value || value.length > 500 || busy) return;
+    morph("center");
     if (SITE_KEY && !human && !token) return;
     clearError();
     setDraft("");
@@ -608,7 +605,7 @@ export function RecruiterChat() {
         className={cn(
           "fixed z-[2] flex min-h-0 min-w-0 flex-col overflow-hidden border border-[#9F956C]/45 bg-surface-elevated shadow-[0_24px_70px_rgba(31,28,22,0.18)]",
           mode === "center" &&
-            "inset-0 m-auto h-[min(36rem,calc(100dvh-2rem))] w-[min(40rem,calc(100vw-2rem))] rounded-[28px] opacity-100",
+            "inset-0 m-auto h-fit max-h-[min(36rem,calc(100dvh-2rem))] w-[min(40rem,calc(100vw-2rem))] rounded-[28px] opacity-100",
           mode === "dock" &&
             cn(
               corner,
@@ -620,7 +617,10 @@ export function RecruiterChat() {
         )}
         {...(mode === "min" ? { inert: true } : {})}
       >
-        <div ref={bodyRef} className="flex h-full min-h-0 w-full flex-col">
+        <div
+          ref={bodyRef}
+          className={cn("flex min-h-0 w-full flex-col", mode !== "center" && "h-full")}
+        >
         <header className="flex shrink-0 items-start justify-between gap-3 border-b border-[#9F956C]/30 px-4 py-3 sm:px-5">
           <div>
             <p className="font-sans text-[10px] font-medium uppercase tracking-[0.18em] text-gold">
@@ -701,28 +701,8 @@ export function RecruiterChat() {
 
         <div ref={listRef} className="min-h-0 flex-1 space-y-3 overflow-y-auto px-4 py-4 sm:px-5">
           <p className="font-sans text-sm leading-relaxed text-text-muted">
-            Ask about James’s work, or paste a job description and I’ll compare it to his background.
+            This chat is a working example of James’s experience with agent APIs. Ask about his work, or paste a job description and I’ll compare it to his background.
           </p>
-          <div className="flex flex-wrap gap-2">
-            {STARTERS.map((starter) => (
-              <button
-                key={starter}
-                type="button"
-                disabled={busy}
-                onClick={() => submit(starter)}
-                className="rounded-full border border-[#9F956C]/45 px-3 py-1 font-sans text-xs text-gold transition-colors hover:border-gold hover:text-foreground disabled:opacity-50"
-              >
-                {starter}
-              </button>
-            ))}
-            <button
-              type="button"
-              onClick={() => inputRef.current?.focus()}
-              className="rounded-full border border-[#9F956C]/45 px-3 py-1 font-sans text-xs text-gold transition-colors hover:border-gold hover:text-foreground"
-            >
-              Paste a job description
-            </button>
-          </div>
           {messages.map((message) => {
             const text = messageText(message.parts);
             if (!text || message.role === "system") return null;
@@ -753,7 +733,7 @@ export function RecruiterChat() {
             void submit(draft);
           }}
         >
-          {SITE_KEY && !human ? <Turnstile onToken={setToken} /> : null}
+          {SITE_KEY && !human && !token ? <Turnstile onToken={setToken} /> : null}
           {!SITE_KEY ? (
             <p className="mb-2 font-sans text-xs text-text-muted">
               The assistant needs a Turnstile site key before it can answer.
@@ -765,6 +745,7 @@ export function RecruiterChat() {
             maxLength={500}
             rows={mode === "center" ? 4 : 2}
             placeholder="Ask about James, or paste a job description"
+            onFocus={() => morph("center")}
             onChange={(event) => setDraft(event.target.value)}
             onKeyDown={(event) => {
               if (event.key === "Enter" && !event.shiftKey) {

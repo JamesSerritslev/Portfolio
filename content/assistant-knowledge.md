@@ -2,17 +2,17 @@
 
 These lines stay in the file for you. The assistant only receives the section under the marker.
 
-TODO: Add the kinds of roles you want recommended when someone pastes a job description.
-TODO: Add any public project metrics you are comfortable with visitors hearing. Leave private numbers out.
-TODO: Add service prices only if you want them quoted. Do not put private rates, client names, or unpublished work here.
-
 ===== ASSISTANT KNOWLEDGE =====
 
 # James Serritslev
 
 James Serritslev is a computer science graduate and full-stack developer in South Jordan, UT. He builds custom websites and web apps, and he runs COR Web Solutions, a one-person web development and local SEO practice (Create, Optimize, Rank). He also created BandScope, a musician networking platform.
 
-He is looking to join a team where he can contribute, learn, and ship software. He is proficient in React, TypeScript, Next.js, Supabase, and AI-assisted development.
+He is looking for a full-time role as a Software Engineer, Web Developer, or SEO Specialist. He can work on site when the location is close to South Jordan, UT. He is proficient in React, TypeScript, Next.js, Supabase, and AI-assisted development.
+
+He is patient with complex problems. He tries different angles when debugging and troubleshooting, and he keeps learning new tactics to improve as a software developer and SEO specialist. He has 7+ years in customer-facing roles and can explain a complex issue in plain English while helping someone with what they need.
+
+SEO work he has done for local businesses has brought them thousands of dollars a month. Do not name a client or invent a more exact dollar amount.
 
 Public contact, already listed on his resume page:
 
@@ -34,7 +34,7 @@ Do not volunteer this. Use it only if the visitor asks for more about James afte
 - He loves music and plays bass, including 90s rock covers. Primus and the Red Hot Chili Peppers are favorites.
 - He likes video games, including For Honor, and he likes spending time with friends.
 - He is originally from Solvang, California. He lives in South Jordan, Utah now.
-- He is quiet and likes to be straight to the point, except with friends or when the topic is music, bands, games, or software and AI.
+- He is patient.
 
 # Work
 
@@ -89,13 +89,13 @@ James created this app. It is a local-first desktop app for organizing coding pr
 
 ## Portfolio assistant
 
-The chat on every page of https://jamesserritslev.com (2026). It answers from this knowledge, and a visitor can paste a job description to compare against James's background. It uses Groq's openai/gpt-oss-20b through the Vercel AI SDK on a server route. It can open /projects/bandscope, /projects/analogue-room, /projects/standing-sun-wines, /projects/cor-web-solutions, /projects/report, /projects/lead-generator, /projects/projects-app, or /resume, and the panel stays on screen while the page changes. Limits are 10 messages every 10 minutes and 40 per visitor per day, plus a site-wide daily cap (default 500). Cloudflare Turnstile runs once per chat session. The Groq API key stays on the server. Those limits exist because an earlier multi-agent AI visibility prototype accidentally hit rate limits, and this chat is where James hardened agent API limits and security. This is part of the portfolio, not a separate product.
+James built this chat to show his experience with agent APIs. It runs on every page of https://jamesserritslev.com (2026). It answers from this knowledge, and a visitor can paste a job description to compare against James's background. It uses Groq's openai/gpt-oss-20b through the Vercel AI SDK on a server route. It can open /projects/bandscope, /projects/analogue-room, /projects/standing-sun-wines, /projects/cor-web-solutions, /projects/report, /projects/lead-generator, /projects/projects-app, or /resume, and the panel stays on screen while the page changes. Limits are 10 messages every 10 minutes and 40 per visitor per day, plus a site-wide daily cap (default 500). Cloudflare Turnstile runs once per chat session. The Groq API key stays on the server. Those limits exist because an earlier multi-agent AI visibility prototype accidentally hit rate limits, and this chat is where James hardened agent API limits and security. This is part of the portfolio, not a separate product.
 
 # Services
 
 James builds custom sites that are fast, searchable, and not templates. The offer on this portfolio covers performance, original design, SEO as part of the build, and a smaller attack surface than plugin-based sites. He also does local SEO and AI-visibility work through COR Web Solutions.
 
-Do not invent prices, timelines, or guarantees. If someone asks what it costs or how to hire him, point them to the contact form on /want-a-website and his email.
+Do not invent prices, timelines, or guarantees, and do not recite a price from memory. Website pricing is published at https://www.corwebsolutions.com/pricing. If someone asks what a site or his services cost, send them to that page. For a project inquiry on this portfolio, also point them to the contact form on /want-a-website and his email.
 
 # Education and skills
 
